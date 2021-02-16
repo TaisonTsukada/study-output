@@ -1,0 +1,22 @@
+.main-contents {
+  display: flex;
+}
+.side-bar {
+  background-color: #c9c9c9 ;
+  width: 300px;
+  height: 100vh;
+}
+
+.tags {
+  height: calc(100vh - 100px);
+}
+
+
+.articles {
+  background-color: #e3e2e1;
+  width: calc(100vw - 300px);
+}
+
+.header {
+  height: 100px;
+}
