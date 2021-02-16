@@ -1,7 +1,8 @@
 class Article < ApplicationRecord
+  has_rich_text :sentence
   with_options presence: true do
     validates :title
-    validates :text
+    validates :sentence
     validates :user_id
 
     belongs_to :user

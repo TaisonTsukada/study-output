@@ -1,0 +1,14 @@
+<%= form_with(model: @article, local: true) do |f| %>
+  <div class="title-field">
+    <%= f.label :title %>
+    <%= f.text_area :title %>
+  </div>
+  <div class="sentense-field">
+    <%= f.label :sentense %>
+    <%= f.rich_text_area :sentense %>
+  </div>
+  <div class ="submit-btn">
+    <%= f.submit "投稿する", class:"sell-btn" %>
+    <%=link_to '戻る', root_path, class:"back-btn"%>
+  </div>
+<% end %>
