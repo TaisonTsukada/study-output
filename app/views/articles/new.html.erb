@@ -4,9 +4,8 @@
     <%= f.text_area :title %>
   </div>
   <div class="sentense-field">
-    <%= f.label :sentense %>
-    <%= f.rich_text_area :sentense %>
-  </div>
+    <%= f.label :content %>
+    <%= f.rich_text_area :content %>
   <div class ="submit-btn">
     <%= f.submit "投稿する", class:"sell-btn" %>
     <%=link_to '戻る', root_path, class:"back-btn"%>
