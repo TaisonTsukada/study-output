@@ -26,6 +26,7 @@
 
 - has_many :tags, through: article_tag
 - has_many :comments
+- belongs_to :user
 
 ## commentsテーブル
 
