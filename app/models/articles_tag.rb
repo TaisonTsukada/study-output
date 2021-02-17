@@ -1,5 +1,4 @@
 class ArticlesTag
-
   include ActiveModel::Model
   attr_accessor :title, :name, :content, :user_id
 
@@ -17,5 +16,4 @@ class ArticlesTag
 
     ArticleTagRelation.create(article_id: article.id, tag_id: tag.id)
   end
-
 end
