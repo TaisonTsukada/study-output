@@ -25,7 +25,7 @@ content(本文)はAction Textを使用。
 
 ### Association
 
-- has_many :tags, through: article_tag
+- has_many :tags, through: article_tag_relation
 - has_many :comments
 - belongs_to :user
 
@@ -50,14 +50,14 @@ content(本文)はAction Textを使用。
 
 ### Association
 
-- has_many :articles, through :article_tag
+- has_many :articles, through :article_tag_relation
 
-## article_tagsテーブル
+## article_tag_relationsテーブル
 
-| column     | type      | option                       |
-|----------- |-----------|----------------------------- |
-| article_id | references| foreign_key :true, NOT :NULL |
-| tag_id     | references| foreign_key :true, NOT :NULL |
+| column     | type      | option            |
+|----------- |-----------|-------------------|
+| article_id | references| foreign_key :true |
+| tag_id     | references| foreign_key :true |
 
 ### Association
 
