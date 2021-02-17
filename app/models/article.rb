@@ -5,11 +5,4 @@ class Article < ApplicationRecord
   has_many :article_tags
   has_many :tags, through: :article_tag_relations
 
-  with_options presence: true do
-    validates :title
-    validates :content
-  end
-
-  
-
 end

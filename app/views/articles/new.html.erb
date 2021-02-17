@@ -1,13 +1,22 @@
-<%= form_with(model: @article, local: true) do |f| %>
-  <div class="title-field">
-    <%= f.label :title %>
-    <%= f.text_area :title %>
+<%= render "shared/header" %>
+<%= form_with model: @article, url: articles_path, class:'form-wrap', local: true do |f| %>
+  <div class='article-form'>
+    <div class="title-field">
+      <%= f.label :title,  "題名" %>
+      <%= f.text_area :title, class:"input-title" %>
+    </div>
+    <div class="tag-field", id='tag-field'>
+      <%= f.label :name, "タグ" %>
+      <%= f.text_field :name, class:"input-tag" %>
+    </div>
+    <div class="content-field">
+      <%= f.label :content, "記事本文" %>
+      <%= f.rich_text_area :content %>
+    </div>
+    <div id="search-result">
+    </div>
   </div>
-  <div class="sentense-field">
-    <%= f.label :content %>
-    <%= f.rich_text_area :content %>
-  <div class ="submit-btn">
-    <%= f.submit "投稿する", class:"sell-btn" %>
-    <%=link_to '戻る', root_path, class:"back-btn"%>
+  <div class="submit-post">
+    <%= f.submit "Send", class: "submit-btn" %>
   </div>
 <% end %>
