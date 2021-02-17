@@ -19,8 +19,9 @@
 | column  | type       | option                            |
 |-------- |------------|-----------------------------------|
 | title   | string     | NOT NULL                          |
-| text    | text       | NOT NULL                          |
 | user_id | references | foreign_key :true, NOT NULL :true |
+
+content(本文)はAction Textを使用。
 
 ### Association
 
