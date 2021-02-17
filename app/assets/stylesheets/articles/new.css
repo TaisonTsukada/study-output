@@ -40,11 +40,17 @@
   padding-left: 10px;
 }
 
+.child{
+  border-bottom:#666 1px solid;
+  margin: 10px 0;
+  padding-left: 11px;
+}
+
 .content-field{
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  margin-top: 100px;
 }
 
 .input-content{
