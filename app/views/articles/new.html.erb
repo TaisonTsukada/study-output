@@ -1,0 +1,25 @@
+<%= render "shared/header" %>
+<%= form_with model: @article, url: articles_path, class:'form-wrap', local: true do |f| %>
+
+<%= render 'shared/error_messages', model: f.object %>
+
+  <div class='article-form'>
+    <div class="title-field">
+      <%= f.label :title,  "題名" %>
+      <%= f.text_area :title, class:"input-title" %>
+    </div>
+    <div class="tag-field", id='tag-field'>
+      <%= f.label :name, "タグ" %>
+      <%= f.text_field :name, class:"input-tag" %>
+    </div>
+    <div class="content-field">
+      <%= f.label :content, "記事本文" %>
+      <%= f.rich_text_area :content %>
+    </div>
+    <div id="search-result">
+    </div>
+  </div>
+  <div class="submit-post">
+    <%= f.submit "Send", class: "submit-btn" %>
+  </div>
+<% end %>
