@@ -4,18 +4,16 @@ class ArticlesTag
   attr_writer :content
 
   with_options presence: true do
-    validates :title, length: {maximum: 20}
-    validates :name, length: {maximum: 10}
-    validates :content, length: {maximum: 500}
+    validates :title, length: { maximum: 20 }
+    validates :name, length: { maximum: 10 }
+    validates :content, length: { maximum: 500 }
     validates :user_id
   end
 
-  def initialize(attributes={})
+  def initialize(attributes = {})
     super
     set_article
   end
-
-
 
   def save
     @article.save

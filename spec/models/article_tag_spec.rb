@@ -14,29 +14,29 @@ RSpec.describe ArticlesTag, type: :model do
     end
     context '投稿した記事が保存できないとき' do
       it 'titileが入力されていないと投稿できない' do
-        @article_tag.title =""
+        @article_tag.title = ''
         @article_tag.valid?
-        expect(@article_tag.errors.full_messages).to include ("Title can't be blank")
+        expect(@article_tag.errors.full_messages).to include("Title can't be blank")
       end
       it 'titleが20文字以上だと投稿できない' do
-        @article_tag.title = "aiueoaiueoaiueoaiueoa"
+        @article_tag.title = 'aiueoaiueoaiueoaiueoa'
         @article_tag.valid?
-        expect(@article_tag.errors.full_messages).to include ("Title is too long (maximum is 20 characters)")
+        expect(@article_tag.errors.full_messages).to include('Title is too long (maximum is 20 characters)')
       end
       it 'タグ名が入力されていないと投稿できない' do
-        @article_tag.name = ""
+        @article_tag.name = ''
         @article_tag.valid?
-        expect(@article_tag.errors.full_messages).to include ("Name can't be blank")
+        expect(@article_tag.errors.full_messages).to include("Name can't be blank")
       end
       it 'contentが入力されていないと投稿できない' do
-        article_tag=ArticlesTag.new(title: 'test', content: "", name: "テスト", user_id: @user.id)
+        article_tag = ArticlesTag.new(title: 'test', content: '', name: 'テスト', user_id: @user.id)
         article_tag.valid?
-        expect(article_tag.errors.full_messages).to include ("Content can't be blank")
+        expect(article_tag.errors.full_messages).to include("Content can't be blank")
       end
       it 'contentが500文字以上だと投稿できない' do
-        article_tag=ArticlesTag.new(title: 'test', content: "a"*501, name: "テスト", user_id: @user.id)
+        article_tag = ArticlesTag.new(title: 'test', content: 'a' * 501, name: 'テスト', user_id: @user.id)
         article_tag.valid?
-        expect(article_tag.errors.full_messages).to include ("Content is too long (maximum is 500 characters)")
+        expect(article_tag.errors.full_messages).to include('Content is too long (maximum is 500 characters)')
       end
     end
   end
