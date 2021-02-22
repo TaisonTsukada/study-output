@@ -3,23 +3,24 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :destroy]
   def index
     @article = Article.all.order(created_at: :desc)
+    @tags = Article.tag_count_on(:tags).most_used(20)
   end
 
   def new
-    @article = ArticlesTag.new
+    @article = Article.new
   end
 
   def create
-    @article = ArticlesTag.new(article_params)
-    if @article.valid?
-      @article.save
-      return redirect_to root_path
+    @article = Article.new(article_params)
+    if @article.save
+       redirect_to root_path
     else
       render "new"
     end
   end
 
   def show
+    @tags = @article.tag_count_on(:tags)
   end
 
   def destroy
@@ -39,7 +40,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:articles_tag).permit(:title, :content, :name).merge(user_id: current_user.id)
+    params.require(:article).permit(:title, :content, :tag_list).merge(user_id: current_user.id)
   end
 
   def set_article

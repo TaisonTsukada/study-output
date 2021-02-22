@@ -8,13 +8,13 @@
       <%= f.label :title,  "題名" %>
       <%= f.text_area :title, class:"input-title" %>
     </div>
-    <div class="tag-field", id='tag-field'>
-      <%= f.label :name, "タグ" %>
-      <%= f.text_field :name, class:"input-tag" %>
-    </div>
     <div class="content-field">
       <%= f.label :content, "記事本文" %>
       <%= f.rich_text_area :content %>
+    </div>
+    <div class="tag-field", id='tag-field'>
+      <%= f.label :tag_list, "タグ" %>
+      <%= f.text_field :tag_list,value: @article.tag_list.join(","), class:"input-tag" %>
     </div>
     <div id="search-result">
     </div>
