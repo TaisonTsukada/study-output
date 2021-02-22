@@ -22,7 +22,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @tags = @article.tag_counts_on(:tags)
+    @comment = Comment.new
+    @comments = @article.comments.includes(:user)
   end
 
   def destroy
