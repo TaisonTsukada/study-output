@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_article, only: [:show, :destroy]
   def index
     @article = Article.all.order(created_at: :desc)
   end
@@ -19,7 +20,13 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
+  end
+
+  def destroy
+    if current_user.id == @article.user.id
+      @article.destroy
+      redirect_to root_path
+    end
   end
 
   def search
@@ -33,5 +40,9 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:articles_tag).permit(:title, :content, :name).merge(user_id: current_user.id)
+  end
+
+  def set_article
+    @article = Article.find(params[:id])
   end
 end
