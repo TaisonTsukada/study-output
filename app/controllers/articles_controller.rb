@@ -12,10 +12,14 @@ class ArticlesController < ApplicationController
     @article = ArticlesTag.new(article_params)
     if @article.valid?
       @article.save
-      redirect_to root_path
+      return redirect_to root_path
     else
-      render :new
+      render "new"
     end
+  end
+
+  def show
+    @article = Article.find(params[:id])
   end
 
   def search
