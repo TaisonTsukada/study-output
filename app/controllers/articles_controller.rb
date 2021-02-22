@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :destroy]
   def index
     @article = Article.all.order(created_at: :desc)
+    @tags = Article.tag_count_on(:tags).most_used(20)
   end
 
   def new
@@ -19,6 +20,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @tags = @article.tag_count_on(:tags)
   end
 
   def destroy
