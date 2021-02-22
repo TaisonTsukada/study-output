@@ -1,9 +1,11 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
-  before_action :set_article, only: [:show, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
+  before_action :set_article, only: [:show, :destroy, :edit, :update]
+  before_action :move_to_index, only: [:edit, :update]
+  
   def index
     @article = Article.all.order(created_at: :desc)
-    @tags = Article.tag_count_on(:tags).most_used(20)
+    @tags = Article.tag_counts_on(:tags).most_used(20)
   end
 
   def new
@@ -20,13 +22,25 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @tags = @article.tag_count_on(:tags)
+    @tags = @article.tag_counts_on(:tags)
   end
 
   def destroy
     if current_user.id == @article.user.id
       @article.destroy
       redirect_to root_path
+    end
+  end
+
+  def edit
+    
+  end
+
+  def update
+    if @article.update(article_params)
+      redirect_to article_path
+    else
+      render :edit
     end
   end
 
@@ -45,5 +59,12 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def move_to_index
+    set_article
+    unless current_user.id == @article.user.id
+      redirect_to root_path
+    end
   end
 end
