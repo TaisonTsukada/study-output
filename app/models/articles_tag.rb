@@ -1,4 +1,5 @@
 class ArticlesTag
+
   include ActiveModel::Model
   attr_accessor :title, :name, :user_id
   attr_writer :content
@@ -10,7 +11,7 @@ class ArticlesTag
     validates :user_id
   end
 
-  def initialize(attributes = {})
+  def initialize(attributes={})
     super
     set_article
   end
@@ -27,6 +28,6 @@ class ArticlesTag
   end
 
   def set_article
-    @article = Article.new(title: title, content: @content)
+    @article = Article.new(title: title, content: @content, user_id: user_id )
   end
 end
