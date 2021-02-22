@@ -6,14 +6,13 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = ArticlesTag.new
+    @article = Article.new
   end
 
   def create
-    @article = ArticlesTag.new(article_params)
-    if @article.valid?
-      @article.save
-      return redirect_to root_path
+    @article = Article.new(article_params)
+    if @article.save
+       redirect_to root_path
     else
       render "new"
     end
@@ -39,7 +38,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:articles_tag).permit(:title, :content, :name).merge(user_id: current_user.id)
+    params.require(:articles_tag).permit(:title, :content, :tag_list).merge(user_id: current_user.id)
   end
 
   def set_article
