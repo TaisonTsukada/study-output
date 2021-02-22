@@ -7,7 +7,7 @@ class ArticlesTag
   with_options presence: true do
     validates :title, length: { maximum: 20 }
     validates :name, length: { maximum: 10 }
-    validates :content, length: { maximum: 500 },
+    validates :content, length: { maximum: 500 }
     validates :user_id
   end
 

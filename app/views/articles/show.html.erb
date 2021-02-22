@@ -1,6 +1,8 @@
 <%= render "shared/header" %>
-<%= link_to "編集", "#", method: :get, class: "article-red-btn" %>
-<%= link_to "削除", article_path(@article.id), method: :delete, class:"article-destroy" %>
+<% if current_user.id == @article.user.id %>
+  <%= link_to "編集", "#", method: :get, class: "article-red-btn" %>
+  <%= link_to "削除", article_path(@article.id), method: :delete, class:"article-destroy" %>
+<% end %>
 <%= @article.title %>
 <%= @article.content %>
 <%= @article.tags.name %>
