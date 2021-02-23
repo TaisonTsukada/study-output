@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @article.comments.includes(:user)
+    @comments = @article.comments
   end
 
   def destroy
