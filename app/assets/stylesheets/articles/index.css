@@ -1,45 +1,7 @@
-.main-contents {
-  display: flex;
-}
-.side-bar {
-  background-color: #c9c9c9 ;
-  width: 300px;
+.container {
+  max-width: 960px;
 }
 
-.tags {
-  height: calc(100vh - 100px);
+.pricing-header {
+  max-width: 700px;
 }
-
-
-.articles {
-  background-color: #e3e2e1;
-  width: 1024px;
-  margin: 0 auto;
-}
-
-.page-heading {
-  font-size: 30px;
-  margin-bottom: 28px;
-}
-.card__wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.card {
-  width: calc((100% - 50px) / 3);
-  margin-bottom: 40px;
-}
-
-.card__img {
-  margin-bottom: 16px;
-}
-
-.card__title {
-  font-size: 24px;
-  margin-bottom: 8px;
-}
-
-
