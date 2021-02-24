@@ -1,0 +1,16 @@
+
+<div class="header">
+  <div class ="logo-block">
+    <div class="logo">Study Output</div>
+  </div>
+  <div class="mypage-block">
+  <% if user_signed_in? %>
+    <button type="button" class="btn btn-primary btn-lg">投稿する</button>
+    <button type="button" class="btn btn-primary ml-2">マイページ</button>
+    <button type="button" class="btn btn-primary ml-2">ログアウト</button>
+  <% else %>
+    <button type="button" class="btn btn-primary ">サインイン</button>
+    <button type="button" class="btn btn-primary ml-2">サインアップ</button>
+  <% end %>
+  </div>
+</div>

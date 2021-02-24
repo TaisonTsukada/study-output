@@ -1,23 +1,41 @@
-<header>
-  <div class="header">
-    <div class ="logo-block">
-      <div class="logo">Study Output</div>
+<%= render "shared/header" %>
+
+
+<main>
+
+  <section class="py-5 pt-10 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light"></h1>
+        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <p>
+          <a href="#" class="btn btn-primary my-2">Main call to action</a>
+          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        </p>
+      </div>
     </div>
-    <div class="mypage-block">
-    <% if user_signed_in? %>
-      <button type="button" class="btn btn-primary btn-lg">投稿する</button>
-      <button type="button" class="btn btn-primary ml-2">マイページ</button>
-      <button type="button" class="btn btn-primary ml-2">ログアウト</button>
-    <% else %>
-      <button type="button" class="btn btn-primary ">サインイン</button>
-      <button type="button" class="btn btn-primary ml-2">サインアップ</button>
-    <% end %>
-    </div>
-  </div>
-</header>
-<div class="contents">
-  <div class="side-bar-left">
-  </div>
-  <div class="main-contents"></div>
-  <div class="side-bar-right"></div>
-</div>
+  </section>
+
+  
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <% @articles.each do |article| %>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+            <div class="card-body">
+              <p class="card-text"><%=article.title%></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge badge-primary"><%=article.tag_list%></span>
+                <small class="text-muted">9min</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+</main>
