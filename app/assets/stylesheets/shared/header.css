@@ -1,0 +1,30 @@
+.header{
+  width: 100vw;
+  background-color: #006669;
+  height: 100px;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.logo-block {
+  height: 60px;
+  width: 200px;
+  margin: 20px 0px 20px 20px;
+  padding: 15px;
+  position: relative;
+}
+.logo {
+  margin-left: 20px;
+  font-size: 20px;
+  color: bisque;
+}
+.mypage-block {
+  height: 60px;
+  width: 500px;
+  margin: 20px 20px 20px 20px;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 15px;
+}
+

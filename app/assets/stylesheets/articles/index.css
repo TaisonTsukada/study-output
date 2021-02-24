@@ -1,7 +1,25 @@
-.container {
-  max-width: 960px;
+.contents {
+  height: 100vh;
+  background-color: #fffaf0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.side-bar-left{
+  height: 100%;
+  width: 25%;
+  background-color: burlywood;
 }
 
-.pricing-header {
-  max-width: 700px;
+.main-contents{
+  height: 100%;
+  width: 50%;
+  background-color: cadetblue;
 }
+
+.side-bar-right {
+  height: 100%;
+  width: 25%;
+}
+

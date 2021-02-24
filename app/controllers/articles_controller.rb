@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :move_to_index, only: [:edit, :update]
 
   def index
-    @article = Article.all.order(created_at: :desc)
+    @articles = Article.all.order(created_at: :desc)
     @tags = Article.tag_counts_on(:tags).most_used(20)
   end
 
