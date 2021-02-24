@@ -2,9 +2,9 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
   before_action :set_article, only: [:show, :destroy, :edit, :update]
   before_action :move_to_index, only: [:edit, :update]
-  
+
   def index
-    @article = Article.all.order(created_at: :desc)
+    @articles = Article.all.order(created_at: :desc)
     @tags = Article.tag_counts_on(:tags).most_used(20)
   end
 
@@ -15,9 +15,9 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-       redirect_to root_path
+      redirect_to root_path
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -34,7 +34,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    
   end
 
   def update
@@ -64,8 +63,6 @@ class ArticlesController < ApplicationController
 
   def move_to_index
     set_article
-    unless current_user.id == @article.user.id
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user.id == @article.user.id
   end
 end

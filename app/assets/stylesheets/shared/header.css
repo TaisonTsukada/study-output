@@ -1,108 +1,31 @@
-.top-page-header {
+.header{
   width: 100vw;
-  padding: 2vh 15vw;
-  display: flex;
-  flex-direction: column;
-}
-
-.search-bar-contents {
+  background-color: #006669;
+  height: 100px;
+  position: absolute;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-.study-icon {
-  width: 10vw;
-  margin-right: 10vw;
-}
-
-.search-form {
-  width: 65vw;
-  height: 5vh;
-  display: flex;
   margin-bottom: 5px;
 }
-
-.search-form>.input-box {
-  width: 100%;
-  height: 5vh;
-  padding-left: 10px;
+.logo-block {
+  height: 60px;
+  width: 200px;
+  margin: 20px 0px 20px 20px;
+  padding: 15px;
+  position: relative;
 }
-
-.search-button {
-  width: 5vh;
-  border: 0;
-  cursor: pointer;
-  background-color: #3ccace;
-  padding: 8px;
+.logo {
+  margin-left: 20px;
+  font-size: 20px;
+  color: bisque;
+  text-decoration: none;
 }
-
-.search-icon {
-  width: 100%;
-}
-
-.nav {
-  font-size: 18px;
+.mypage-block {
+  height: 60px;
+  width: 500px;
+  margin: 20px 20px 20px 20px;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 1vh 0;
+  justify-content: flex-end;
+  padding-top: 15px;
 }
 
-.lists-left {
-  display: flex;
-  min-width: 200px;
-
-}
-
-.popular-list {
-  text-decoration: none;
-  margin-right: 3vw;
-  color: #333333;
-}
-
-.latest-list {
-  text-decoration: none;
-  color: #333333;
-}
-
-.lists-right {
-  display: flex;
-  list-style: none;
-  align-items: flex-end;
-}
-
-
-.user-nickname {
-  text-decoration: none;
-  margin-right: 3vw;
-  color: #333333;
-  font-weight: bold;
-}
-
-
-.logout {
-  text-decoration: none;
-  color: #333333;
-}
-
-.login {
-  text-decoration: none;
-  line-height: 32px;
-  margin-right: 3vw;
-  color: #333333;
-}
-
-.sign-up {
-  text-decoration: none;
-  color: #333333;
-}
-.create-article{
-
-}
-
-.create-icon{
-  height: 10vh;
-  width: 10vw;
-}

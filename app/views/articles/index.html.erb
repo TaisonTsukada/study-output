@@ -1,12 +1,61 @@
-<div class="wrapper">
-  
-  <%= render "shared/header" %>
-  
-  <div class = "main-contents">
-    <div class = "side-bar">
-      <%= render "side_bar" %>
-    </div>
-    <div class="articles">
-        <%= render "main_articles" %>
+<%= render "shared/header" %>
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">
+              <span data-feather="home"></span>
+              新着
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file"></span>
+              トレンド
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              タグ一覧
+            </a>
+          </li>
+        </ul>
+    </nav>
+
+    <main class="ml-20em col-9 ms-auto">
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ml-20em">
+            <% @articles.each do |article|%>
+            <div class="col">
+            <%= link_to article_path(article.id) do %>
+              <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                <div class="card-body">
+                  <p class="card-text"> <%=article.title%> </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <% article.tag_list.each do |tag|%>
+                    <span class="badge badge-primary"> <%=tag%> </span>
+                    <% end %>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 </div>
