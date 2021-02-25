@@ -9,7 +9,7 @@
   <% else %>
       <td>
         <%= link_to create_like_path(@article), method: :POST, remote: true do %>
-          <i class="fa fa-heart like-btn">
+          <i class="fa fa-heart like-btn"></i>
         <% end %>
         <%= @article.likes.count %>
       </td>
