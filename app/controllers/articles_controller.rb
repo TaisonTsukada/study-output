@@ -5,7 +5,10 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all.order(created_at: :desc)
-    @tags = Article.tag_counts_on(:tags).most_used(20)
+    @tags = Article.tag_counts_on(:tags).order('count DESC')
+    if @tag = params[:tag]
+      @articles = Article.tagged_with(params[:tag])
+    end
   end
 
   def new
