@@ -10,4 +10,8 @@ class User < ApplicationRecord
   has_many :articles
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+
+  def liked_by?(article_id)
+    likes.where(article_id: article_id).exists?
+  end
 end
