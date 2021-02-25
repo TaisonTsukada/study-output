@@ -6,11 +6,9 @@
 <%= @article.title %>
 <%= @article.content %>
 <%= @article.tag_list %>
-<% if current_user.liked_by?(@article.id) %>
-  <td><%= link_to 'いいねを外す', destroy_like_path(@article), method: :DELETE, remote: true %><%= @article.likes.count %></td>
-<% else %>
-  <td><%= link_to 'いいね', create_like_path(@article), method: :POST, remote: true %><%= @article.likes.count %></td>
-<% end %>
+<div id="likes_buttons_<%= @article.id %>">
+  <%= render partial: 'likes/like', locals: { article: @article} %>
+</div>
 
 <div>
     <h4>コメント</h4>
