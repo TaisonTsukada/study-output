@@ -6,6 +6,9 @@
 <%= @article.title %>
 <%= @article.content %>
 <%= @article.tag_list %>
+<div id="likes_buttons_<%= @article.id %>">
+  <%= render partial: 'likes/like', locals: { article: @article} %>
+</div>
 
 <div>
     <h4>コメント</h4>

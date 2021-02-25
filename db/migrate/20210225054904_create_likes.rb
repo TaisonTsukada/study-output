@@ -1,10 +1,8 @@
-class CreateComments < ActiveRecord::Migration[6.0]
+class CreateLikes < ActiveRecord::Migration[6.0]
   def change
-    create_table :comments do |t|
-
+    create_table :likes do |t|
       t.references :user, foreign_key: true
       t.references :article, foreign_key: true
-      t.text :text, null: false
       t.timestamps
     end
   end

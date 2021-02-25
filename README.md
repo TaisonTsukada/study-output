@@ -12,6 +12,7 @@
 
 - has_many :articles
 - has_many :comments
+- has_many :likes
 
 
 ## articlesテーブル
@@ -24,10 +25,9 @@
 content(本文)はAction Textを使用。
 
 ### Association
-
-- has_many :tags, through: article_tag_relation
 - has_many :comments
 - belongs_to :user
+- has_many :likes
 
 ## commentsテーブル
 
@@ -42,24 +42,17 @@ content(本文)はAction Textを使用。
 - belongs_to :article
 - belongs_to :user
 
-## tagsテーブル
+## likesテーブル
 
-| column | type   | option  |
-|--------|------- |-------- |
-| text   | string | NOT NULL|
+| column     | type       | option                            |
+|----------- |------------|-----------------------------------|
+| article_id | references | foreign_key :true, NOT NULL :true |
+| user_id    | references | foreign_key :true, NOT NULL :true |
 
-### Association
-
-- has_many :articles, through :article_tag_relation
-
-## article_tag_relationsテーブル
-
-| column     | type      | option            |
-|----------- |-----------|-------------------|
-| article_id | references| foreign_key :true |
-| tag_id     | references| foreign_key :true |
-
-### Association
+## Association
 
 - belongs_to :article
-- belongs_to :tag
+- belongs_to :user
+
+## タグについて
+タグに関してはgemの"acts-as-tagable-on"を使用。
