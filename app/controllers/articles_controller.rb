@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
     @articles = Article.all.order(created_at: :desc)
     @tags = Article.tag_counts_on(:tags).order('count DESC')
     if @tag = params[:tag]
-      @article = Article.tagged_with(params[:tag])
+      @articles = Article.tagged_with(params[:tag])
     end
   end
 
