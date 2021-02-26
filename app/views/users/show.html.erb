@@ -1,3 +1,11 @@
 <%= render "shared/header" %>
 <%= @user.nickname %>
-<%= link_to %>
+
+<h2>プロフィール画像</h2>
+<% if @user.image.attached? %>
+  <p><%= image_tag(rails_blob_path(@user.image),:size => "50x50") %></p>
+<% else %>
+  <p><%= image_tag("default_user.png", :size => "50x50") %></p>
+<% end %>
+
+<%= link_to "ユーザー情報編集", edit_user_path(current_user.id) %>
