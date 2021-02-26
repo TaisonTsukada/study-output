@@ -6,11 +6,11 @@
   <div class="mypage-block">
   <% if user_signed_in? %>
     <%= link_to "投稿する", new_article_path, class: 'btn btn-default' %>
-    <button type="button" class="btn btn-primary ml-2">マイページ</button>
+    <%= link_to "マイページ", user_path(current_user.id), class: 'btn btn-default'%>
     <%= link_to "ログアウト", destroy_user_session_path, class: 'btn btn-default' %>
   <% else %>
-    <button type="button" class="btn btn-primary ">サインイン</button>
-    <button type="button" class="btn btn-primary ml-2">サインアップ</button>
+    <%= link_to "サインイン",new_user_session_path, class: 'btn btn-default'%>
+    <%= link_to "サインアップ",new_user_registration_path, class: 'btn btn-default'%>
   <% end %>
   </div>
 </div>
