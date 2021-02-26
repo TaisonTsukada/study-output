@@ -16,6 +16,11 @@
       <%= f.label :tag_list, "タグ" %>
       <%= f.text_field :tag_list,value: @article.tag_list.join(","), class:"input-tag" %>
     </div>
+    <div class="image-field">
+      <%= f.label :image, "サムネイル画像"%>
+      <%= f.file_field :image %>
+      <div id="image-list"></div>
+    </div>
     <div id="search-result">
     </div>
   </div>
