@@ -29,3 +29,9 @@
   padding-top: 15px;
 }
 
+.img-circle {
+  border-radius: 50%;
+  background-position: left top;
+  border: 3px solid #00cc00;
+}
+

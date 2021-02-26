@@ -3,14 +3,20 @@
   <div class ="logo-block">
     <div class="logo"><%=link_to "Study Output", root_path %></div>
   </div>
-  <div class="mypage-block">
+  <ul class="mypage-block">
   <% if user_signed_in? %>
-    <%= link_to "投稿する", new_article_path, class: 'btn btn-default' %>
-    <%= link_to "マイページ", user_path(current_user.id), class: 'btn btn-default'%>
-    <%= link_to "ログアウト", destroy_user_session_path, class: 'btn btn-default' %>
+    <li><%= link_to "投稿する", new_article_path, class: 'btn btn-default' %>
+    <li><%= link_to  user_path(current_user.id) do %>
+          <% if current_user.image.attached? %>
+            <p><%= image_tag(rails_blob_path(@user.image),:size => "50x50", class: "img-circle") %></p>
+          <% else %>
+            <p><%= image_tag("default_user.png", :size => "50x50", class: "img-circle") %></p>
+          <% end %> 
+        <% end %>
+    <li><%= link_to "ログアウト", destroy_user_session_path, class: 'btn btn-default' %>
   <% else %>
-    <%= link_to "サインイン",new_user_session_path, class: 'btn btn-default'%>
-    <%= link_to "サインアップ",new_user_registration_path, class: 'btn btn-default'%>
+    <li><%= link_to "サインイン",new_user_session_path, class: 'btn btn-default'%>
+    <li><%= link_to "サインアップ",new_user_registration_path, class: 'btn btn-default'%>
   <% end %>
-  </div>
+  </ul>
 </div>
