@@ -47,6 +47,7 @@
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ml-20em">
             <%= render partial: 'article', collection: @articles%>
           </div>
+          <%= paginate @articles %>
         </div>
       </div>
     </main>
