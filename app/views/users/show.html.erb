@@ -10,6 +10,6 @@
 
 <%= link_to "ユーザー情報編集", edit_user_path(current_user.id) %>
 
-<tr id="user_<%= @user.id %>">
+<div id="follow-ajax">
   <%= render 'relationships/follow_button',user: @user %>
-</tr>
+</div>
