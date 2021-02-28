@@ -11,6 +11,5 @@ class Article < ApplicationRecord
     validates :user_id
     validates :content
     validates :tag_list
-    validates :image
   end
 end
