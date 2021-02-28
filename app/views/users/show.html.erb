@@ -9,3 +9,9 @@
 <% end %>
 
 <%= link_to "ユーザー情報編集", edit_user_path(current_user.id) %>
+
+<div id="follow-ajax">
+  <%= render 'shared/follow',user: @user %>
+</div>
+<%= link_to "フォロー: #{@user.followings.count}", followings_user_path(@user.id) %>
+<%= link_to "フォロワー: #{@user.followers.count}", followers_user_path(@user.id) %>

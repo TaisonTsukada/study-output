@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :show]
+  before_action :set_user, only: [:edit, :show, :followings, :followers]
   
   def show
   end
@@ -9,6 +9,14 @@ class UsersController < ApplicationController
 
   def update
     current_user.update(update_params)
+  end
+
+  def followings
+    @users = @user.followings.all
+  end
+
+  def followers
+    @users = @user.followers.all
   end
 
   private
