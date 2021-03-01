@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments, only: [:create, :destroy]
     collection do
-      get 'articles_search'
+      get 'search'
     end
   end
   post 'like/:id' => 'likes#create', as: 'create_like'
