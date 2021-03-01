@@ -1,9 +1,18 @@
 
 <div class="header sticky-top ">
   <div class ="logo-block">
-    <div class="logo"><%=link_to "Study Output", root_path %></div>
+    <div class="logo">
+      <%=link_to "Study Output", root_path %>
+    </div>
   </div>
   <ul class="mypage-block">
+    <li><dl class="searchbox">
+        <%= search_form_for @q, url: articles_path do |f| %>
+          <dt><%= f.text_field :title_or_tags_name_cont ,placeholder: '記事検索' %></dt>
+          <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+        <% end %>
+        </dl>
+    </li>
   <% if user_signed_in? %>
     <li><%= link_to "投稿する", new_article_path, class: 'btn btn-default' %>
     <li><%= link_to  user_path(current_user.id) do %>
