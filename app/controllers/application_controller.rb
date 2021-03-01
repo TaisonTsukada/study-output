@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_search
+  before_action :set_q
 
   private
 
@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :image])
   end
 
-  def set_search
-    @sarch = Artcile.ransack(params[:q])
-    @search_articles = @search.result.page(params[:page])
+  def set_q
+    @q = Article.ransack(params[:q])
+    @results = @q.result.page(params[:page]).per(9)
   end
 end
