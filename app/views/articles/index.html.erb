@@ -5,24 +5,6 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <span data-feather="home"></span>
-              新着
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file"></span>
-              トレンド
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="shopping-cart"></span>
-              
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="users"></span>
               人気タグ一覧
@@ -42,18 +24,13 @@
     </nav>
 
     <main class="ml-20em col-9 ms-auto">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">新着記事</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">トレンド記事</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">注目記事</a>
-        </li>
-      </ul>
-      <div class="album py-5 bg-light">
+      <nav class="mb-2">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">新着記事</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">人気記事</a>
+          <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">閲覧数の多い記事</a>
+        </div>
+      </nav>
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ml-20em">
             <%= render partial: 'article', collection: @results%>
