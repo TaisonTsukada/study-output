@@ -10,6 +10,9 @@
 <%= @article.content %>
 <%= @article.tag_list %>
 <%= @article.impressions_count %>
+<div id="article-<%= @article.id %>">
+    <%= render partial: 'stocks/stock', locals: { article: @article } %>
+</div>
 <div id="likes_buttons_<%= @article.id %>">
   <%= render partial: 'likes/like', locals: { article: @article} %>
 </div>

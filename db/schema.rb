@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_030951) do
+ActiveRecord::Schema.define(version: 2021_03_02_034850) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -122,6 +122,16 @@ ActiveRecord::Schema.define(version: 2021_03_02_030951) do
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
+  create_table "stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "article_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_stocks_on_article_id"
+    t.index ["user_id", "article_id"], name: "index_stocks_on_user_id_and_article_id", unique: true
+    t.index ["user_id"], name: "index_stocks_on_user_id"
+  end
+
   create_table "taggings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -158,7 +168,6 @@ ActiveRecord::Schema.define(version: 2021_03_02_030951) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "impressions_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -171,4 +180,6 @@ ActiveRecord::Schema.define(version: 2021_03_02_030951) do
   add_foreign_key "likes", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
+  add_foreign_key "stocks", "articles"
+  add_foreign_key "stocks", "users"
 end
