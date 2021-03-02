@@ -83,6 +83,7 @@ dl.searchbox dd{
 }
 
 .create-btn{
+  margin-top: 2px;
   background-color: #5fad35;
   height: 36px;
   border: none;
