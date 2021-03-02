@@ -7,11 +7,11 @@
 <% else %>
   <p><%= image_tag("default_user.png", :size => "50x50") %></p>
 <% end %>
-
-<%= link_to "ユーザー情報編集", edit_user_path(current_user.id) %>
-
-<div id="follow-ajax">
+<% if user_signed_in? %>
+  <%= link_to "ユーザー情報編集", edit_user_path(current_user.id) %>
+  <div id="follow-ajax">
   <%= render 'shared/follow',user: @user %>
 </div>
+<% end %>
 <%= link_to "フォロー: #{@user.followings.count}", followings_user_path(@user.id) %>
 <%= link_to "フォロワー: #{@user.followers.count}", followers_user_path(@user.id) %>

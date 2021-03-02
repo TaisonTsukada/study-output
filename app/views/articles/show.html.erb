@@ -1,7 +1,9 @@
 <%= render "shared/header" %>
-<% if current_user.id == @article.user.id %>
-  <%= link_to "編集", edit_article_path(@article.id), method: :get, class: "article-red-btn" %>
-  <%= link_to "削除", article_path(@article.id), method: :delete, class:"article-destroy" %>
+<% if user_signed_in? %>
+  <% if current_user.id == @article.user.id %>
+    <%= link_to "編集", edit_article_path(@article.id), method: :get, class: "article-red-btn" %>
+    <%= link_to "削除", article_path(@article.id), method: :delete, class:"article-destroy" %>
+  <% end %>
 <% end %>
 <%= link_to"#{@article.user.nickname}", user_path(@article.user_id) %>
 <%= @article.title %>

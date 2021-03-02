@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = @article.comments.build(comment_params)
     @comment.user_id = current_user.id
+    @article.create_notification_comment!(current_user, @comment.id)
     render :index if @comment.save
   end
 

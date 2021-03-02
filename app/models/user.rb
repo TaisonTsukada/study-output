@@ -12,10 +12,15 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_one_attached :image
 
+  #フォロー機能のアソシエーション
   has_many :relationships, foreign_key: "user_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :follow
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :user
+
+  #通知機能のアソシエーション
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
   def liked_by?(article_id)
     likes.where(article_id: article_id).exists?
@@ -36,5 +41,15 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
 
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
   
 end

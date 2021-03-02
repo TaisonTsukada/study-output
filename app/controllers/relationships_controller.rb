@@ -1,8 +1,10 @@
 class RelationshipsController < ApplicationController
   before_action :set_user
+  before_action :authenticate_user!
 
   def create
     following = current_user.follow(@user)
+    @user.create_notification_follow!(current_user)
     following.save
   
   end
