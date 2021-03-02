@@ -1,0 +1,63 @@
+<% visitor = activity.visitor %>
+<% visited = activity.visited %>
+<div class="col-md-6 max-auto">
+  <div class= "form-inline">
+      <span>
+        <% case activity.action
+        when 'follow' then %>
+          <%= link_to user_path(visited) do %>
+            <% if visited.image.attached? %>
+            <%= image_tag rails_blob_path(visited.image, size: "50x50", class: "image-crcle")%>
+            <% else %>
+              <%= image_tag("default_user.png", size: "50x50", class: "img-circle") %>
+            <% end %>
+            <strong>
+              <%= visited.name %>
+            </strong>
+          <% end %>
+          <%= "さんをフォローしました"%>
+
+        <% when 'like' then %>
+          <span>
+            <%= link_to article_path(activity.article) do %>
+              <% if activity.article.user.image.attached? %>
+                <%= image_tag rails_blob_path(activity.article.user.image, size: "50x50", class: "image-crcle")%>
+              <% else %>
+                <%= image_tag("default_user.png", size: "50x50", class: "img-circle")%>
+              <% end %>
+              <strong>
+                <%= activity.article.user.nickname + 'さんの投稿' %>
+              </strong>
+            <% end %>
+            <%= "にいいねしました"%>
+          </span>
+        <% when 'comment' then %>
+          <% if activity.article.user_id == visitor.id %>
+            <%= link_to "あなたの投稿", activity.article, style: "font-weight: bold;" %>
+            <%= "にコメントしました"%>
+          <% else %>
+            <span>
+              <%= link_to article_path(activity.article) do %>
+              <% if activity.article.user.image.attached? %>
+                <%= image_tag rails_blob_path(activity.article.user.image), class: 'icon_mini'%>
+              <% else %>
+                <%= image_tag("default_user.png", size: "50x50", class: "img-circle")%>
+              <% end %>
+                <strong>
+                  <%= activity.article.user.nickname + 'さんの投稿'%>
+                </strong>
+              <% end %>
+            </span>
+          <%= "にコメントしました"%>
+          <p class= "text-muted.mb-0">
+            <%= Comment.find_by(id: activity.comment_id)&.comment %>
+          </p>
+          <% end %>
+        <% end %>
+      </span>
+    </div>
+    <div class="small.text-muted.text-right">
+      <%= time_ago_in_words(activity.created_at).upcase %>
+    </div>
+    <hr>
+</div>

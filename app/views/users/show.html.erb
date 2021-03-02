@@ -9,6 +9,7 @@
 <% end %>
 <% if user_signed_in? %>
   <%= link_to "ユーザー情報編集", edit_user_path(current_user.id) %>
+  <%= link_to "ユーザーアクティビティ", activities_path %>
   <div id="follow-ajax">
   <%= render 'shared/follow',user: @user %>
 </div>
