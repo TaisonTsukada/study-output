@@ -17,8 +17,10 @@
 .logo {
   margin-left: 20px;
   font-size: 20px;
-  color: bisque;
-  text-decoration: none;
+}
+
+h2 {
+  color: #fff;
 }
 .mypage-block {
   height: 60px;
@@ -28,6 +30,13 @@
   justify-content: flex-end;
   padding-top: 15px;
 }
+.header-list{
+  margin-left: 0.5em;
+}
+
+.search{
+  margin-right: 0.5em;
+}
 
 .img-circle {
   border-radius: 50%;
@@ -36,7 +45,7 @@
 }
 
 dl.searchbox{
-  width: 150px;
+  width: 250px;
   position:relative;
   background-color:#fff;
   border:1px solid #aaa;
@@ -73,10 +82,26 @@ dl.searchbox dd{
   background:#228B22;
 }
 
+.create-btn{
+  background-color: #5fad35;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  color: #FFF;
+}
+
+.create-btn:hover {
+  background: #228b22;
+}
+
 .n-circle {
   position: absolute;
   padding-left: 1rem;
   padding-top: 0rem;
   color: #efa04c;
+}
+.fa-bell{
+  color: #FFF;
+  margin-top: 5px;
 }
 
