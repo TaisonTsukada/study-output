@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
   before_action :set_article, only: [:show, :destroy, :edit, :update]
   before_action :move_to_index, only: [:edit, :update]
+  
 
   def index
     @articles = Article.all.order(created_at: :desc).page(params[:page]).per(9)
@@ -9,6 +10,7 @@ class ArticlesController < ApplicationController
     if @tag = params[:tag]
       @articles = Article.tagged_with(params[:tag]).page(params[:page]).per(9)
     end
+    @rank_articles = Article.order(impressions_count: 'DESC')
   end
 
   def new
@@ -27,6 +29,7 @@ class ArticlesController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @article.comments
+    impressionist(@article, nil, unique: [:ip_address])
   end
 
   def destroy
