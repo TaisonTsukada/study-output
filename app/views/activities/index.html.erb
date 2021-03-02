@@ -1,0 +1,11 @@
+<div class="col-md-6 max-auto">
+  <% if @activities.exists? %>
+    <% @activities.each do |activity| %>
+      <%= render 'activity', activity: activity %>
+    <% end %>
+  <% else %>
+    <p class="text-center">
+      アクティビティはありません
+    </p>
+  <%end%>
+</div>
