@@ -4,10 +4,16 @@ class ArticlesController < ApplicationController
   before_action :move_to_index, only: [:edit, :update]
 
   def index
-    @articles = Article.all.order(created_at: :desc).page(params[:page]).per(9)
     @tags = Article.tag_counts_on(:tags).order('count DESC')
-    @articles = Article.tagged_with(params[:tag]).page(params[:page]).per(9) if @tag = params[:tag]
-    @rank_articles = Article.order(impressions_count: 'DESC')
+    if params[:option] == "view"
+      @articles = Article.all.order(impressions_count: 'DESC').page(params[:page]).per(9) 
+    #elsif params[:option] == "like"
+      #@articles = Article.all.
+    elsif  @tag = params[:tag]
+      @articles = Article.tagged_with(params[:tag]).page(params[:page]).per(9) 
+    else
+      @articles = Article.all.order(created_at: :desc).page(params[:page]).per(9)
+    end
   end
 
   def new

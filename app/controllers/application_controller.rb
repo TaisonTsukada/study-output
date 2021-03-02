@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
 
   def set_q
     @q = Article.ransack(params[:q])
-    @results = @q.result.order(created_at: :desc).page(params[:page]).per(9)
+    @articles = @q.result.order(created_at: :desc).page(params[:page]).per(9)
   end
 end
