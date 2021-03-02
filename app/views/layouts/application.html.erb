@@ -32,10 +32,6 @@
             </dl>
         </li>
       <% if user_signed_in? %>
-        <li class= "header-list"><%= link_to new_article_path do %>
-              <button type="button" class="create-btn"><i class="fas fa-pencil-alt"></i>投稿する</button>
-            <% end %>
-        </li>
         <% if unchecked_notifications.any? %>
           <i class="fa fa-circle", style="color: gold;"></i>
         <% end %>
@@ -45,7 +41,7 @@
           <% end %>
         </li>
         <li class= "header-list"><div class="dropdown">
-              <button class="btn dropdown shadow-none" type="button" id="dropdownMenuButton", data-toggle="dropdown">        
+              <button class="btn dropdown shadow-none pt-0 h-25" type="button" id="dropdownMenuButton", data-toggle="dropdown">        
                 <% if current_user.image.attached? %>
                   <p><%= image_tag(rails_blob_path(@user.image),:size => "50x50", class: "img-circle") %></p>
                 <% else %>
@@ -57,6 +53,10 @@
               <%= link_to "ログアウト", destroy_user_session_path, class: 'dropdown-item', method: :delete %>
               </div>
             </div>
+        </li>
+        <li class= "header-list"><%= link_to new_article_path do %>
+              <button type="button" class="create-btn"><i class="fas fa-pencil-alt"></i>投稿する</button>
+            <% end %>
         </li>
       <% else %>
         <li class= "header-list"><%= link_to "サインイン",new_user_session_path, class: 'btn btn-default'%>
