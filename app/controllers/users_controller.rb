@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :show, :followings, :followers]
-  
+  before_action :authenticate_user!
+  before_action :move_to_index, only: [:edit]
+
   def show
   end
 
@@ -20,6 +22,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def update_params
     params.require(:user).permit(:image)
   end
@@ -28,4 +31,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def move_to_index
+    set_user
+    unless current_user.id == @user.id
+    end
+  end
 end

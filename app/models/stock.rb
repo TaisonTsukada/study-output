@@ -6,6 +6,6 @@ class Stock < ApplicationRecord
   validates :article_id, presence: true
 
   def self.get_stock_articles(user)
-    self.where(user_id: user.id).map(&:article)
+    where(user_id: user.id).map(&:article)
   end
 end

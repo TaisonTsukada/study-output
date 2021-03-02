@@ -33,6 +33,13 @@
   border-radius: 15px;    /*角を丸くする*/
 }
 
+.dropdown::after { display: none; }
+
+*:focus {
+outline: none;
+}
+
+
  @import "jquery.tagit";
  @import "tagit.ui-zendesk";
  @import "font-awesome-sprockets";

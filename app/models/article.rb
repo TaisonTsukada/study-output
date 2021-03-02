@@ -18,19 +18,17 @@ class Article < ApplicationRecord
     validates :tag_list
   end
 
-  #通知機能のメソッド↓
+  # 通知機能のメソッド↓
   def create_notification_like!(current_user)
-
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and article_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and article_id = ? and action = ? ', current_user.id, user_id,
+                               id, 'like'])
     if temp.blank?
       notification = current_user.active_notifications.new(
         article_id: id,
         visited_id: user_id,
         action: 'like'
       )
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
+      notification.checked = true if notification.visitor_id == notification.visited_id
       notification.save if notification.valid?
     end
   end
@@ -50,13 +48,11 @@ class Article < ApplicationRecord
       visited_id: visited_id,
       action: 'comment'
     )
-    if notification.visitor_id == notification.visited_id
-      notification.checked = true
-    end
+    notification.checked = true if notification.visitor_id == notification.visited_id
     notification.save if notification.valid?
   end
 
-  #ストック機能のメソッド↓
+  # ストック機能のメソッド↓
   def stock(user)
     stocks.create(user_id: user.id)
   end

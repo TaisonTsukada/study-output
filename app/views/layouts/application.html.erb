@@ -18,11 +18,13 @@
     <div class="header sticky-top ">
       <div class ="logo-block">
         <div class="logo">
-          <%=link_to "Study Output", root_path %>
+          <%= link_to root_path, class: "text-decoration-none" do %>
+            <h2 class="w-2x h-2x shadow-none text-decoration-none", style="font-weight: bold;">StudyOutput</h2>
+          <% end %>
         </div>
       </div>
       <ul class="mypage-block">
-        <li><dl class="searchbox">
+        <li class= "header-list search"><dl class="searchbox">
             <%= search_form_for @q, url: articles_path do |f| %>
               <dt><%= f.text_field :title_or_tags_name_cont ,placeholder: '記事検索' %></dt>
               <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
@@ -30,25 +32,35 @@
             </dl>
         </li>
       <% if user_signed_in? %>
-        <li><%= link_to "投稿する", new_article_path, class: 'btn btn-default' %></li>
         <% if unchecked_notifications.any? %>
           <i class="fa fa-circle", style="color: gold;"></i>
         <% end %>
-        <li>
-          <%= link_to "お知らせ", notifications_path, class: "btn-default"%>
+        <li class= "header-list">
+          <%= link_to  notifications_path do %>
+            <i class="fas fa-bell fa-2x"></i>
+          <% end %>
         </li>
-        <li><%= link_to  user_path(current_user.id) do %>
-              <% if current_user.image.attached? %>
-                <p><%= image_tag(rails_blob_path(@user.image),:size => "50x50", class: "img-circle") %></p>
-              <% else %>
-                <p><%= image_tag("default_user.png", :size => "50x50", class: "img-circle") %></p>
-              <% end %> 
+        <li class= "header-list"><div class="dropdown">
+              <button class="btn dropdown shadow-none pt-0 h-25" type="button" id="dropdownMenuButton", data-toggle="dropdown">        
+                <% if current_user.image.attached? %>
+                  <p><%= image_tag(rails_blob_path(@user.image),:size => "50x50", class: "img-circle") %></p>
+                <% else %>
+                  <p><%= image_tag("default_user.png", :size => "50x50", class: "img-circle") %></p>
+                <% end %> 
+              </button>
+              <div class="dropdown-menu dropdown-menu-right btn-sm">
+              <%= link_to "マイページ", user_path(current_user.id), class: 'dropdown-item'%>
+              <%= link_to "ログアウト", destroy_user_session_path, class: 'dropdown-item', method: :delete %>
+              </div>
+            </div>
+        </li>
+        <li class= "header-list"><%= link_to new_article_path do %>
+              <button type="button" class="create-btn"><i class="fas fa-pencil-alt"></i>投稿する</button>
             <% end %>
         </li>
-        <li><%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-default", method: :delete%></li>
       <% else %>
-        <li><%= link_to "サインイン",new_user_session_path, class: 'btn btn-default'%>
-        <li><%= link_to "サインアップ",new_user_registration_path, class: 'btn btn-default'%>
+        <li class= "header-list"><%= link_to "サインイン",new_user_session_path, class: 'btn btn-default'%>
+        <li class= "header-list"><%= link_to "サインアップ",new_user_registration_path, class: 'btn btn-default'%>
       <% end %>
       </ul>
     </div>
