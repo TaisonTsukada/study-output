@@ -6,6 +6,8 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :stocks, dependent: :destroy
+  has_many :stock_users, through: :stocks, source: :user
 
   is_impressionable counter_cache: true
 
