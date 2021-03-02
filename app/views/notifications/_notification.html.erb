@@ -23,6 +23,7 @@
       <% when 'comment' then %>
         <% if notification.article.user_id == visited.id %>
           <%= link_to "あなたの投稿", notification.article, style: "font-weight: bold;" %>
+          <%= "にコメントしました"%>
         <% else %>
           <span>
             <%= link_to article_path(notification.article) do %>
