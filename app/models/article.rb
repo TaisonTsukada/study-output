@@ -62,10 +62,10 @@ class Article < ApplicationRecord
   end
 
   def unstock(user)
-    stock.find_by(user_id: user.id).destroy
+    stocks.find_by(user_id: user.id).destroy
   end
 
   def stocked?(user)
-    stock_users.Include(user)
+    stock_users.include?(user)
   end
 end
