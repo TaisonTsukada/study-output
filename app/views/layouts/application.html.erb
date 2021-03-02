@@ -37,15 +37,20 @@
         <li>
           <%= link_to "お知らせ", notifications_path, class: "btn-default"%>
         </li>
-        <li><%= link_to  user_path(current_user.id) do %>
-              <% if current_user.image.attached? %>
-                <p><%= image_tag(rails_blob_path(@user.image),:size => "50x50", class: "img-circle") %></p>
-              <% else %>
-                <p><%= image_tag("default_user.png", :size => "50x50", class: "img-circle") %></p>
-              <% end %> 
-            <% end %>
+        <li><div class="dropdown">
+              <button class="btn dropdown shadow-none" type="button" id="dropdownMenuButton", data-toggle="dropdown">        
+                <% if current_user.image.attached? %>
+                  <p><%= image_tag(rails_blob_path(@user.image),:size => "50x50", class: "img-circle") %></p>
+                <% else %>
+                  <p><%= image_tag("default_user.png", :size => "50x50", class: "img-circle") %></p>
+                <% end %> 
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+              <%= link_to "マイページ", user_path(current_user.id), class: 'dropdown-item'%>
+              <%= link_to "ログアウト", destroy_user_session_path, class: 'dropdown-item', method: :delete %>
+              </div>
+            </div>
         </li>
-        <li><%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-default", method: :delete%></li>
       <% else %>
         <li><%= link_to "サインイン",new_user_session_path, class: 'btn btn-default'%>
         <li><%= link_to "サインアップ",new_user_registration_path, class: 'btn btn-default'%>
