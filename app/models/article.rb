@@ -7,6 +7,8 @@ class Article < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
+  is_impressionable counter_cache: true
+
   with_options presence: true do
     validates :title
     validates :user_id
