@@ -26,13 +26,13 @@
     <main class="ml-20em col-9 ms-auto">
       <nav class="mb-2">
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <%= link_to("新着記事一覧", articles_path, class: "nav-item nav-link active", id:"nav-home-tab", "data-toggle": "tab", role: "tab", "aria-controls": "nav-home", "aria-selected": "true")%>
-          <%= link_to("人気記事一覧", articles_path, class: "nav-item nav-link ", id:"nav-home-tab", "data-toggle": "tab", role: "tab", "aria-controls": "nav-home", "aria-selected": "false")%>
-          <%= link_to("閲覧数の多い記事", articles_path(option: "view"), class: "nav-item nav-link ", id:"nav-home-tab", "data-toggle": "tab", role: "tab", "aria-controls": "nav-home", "aria-selected": "false")%>
+          <%= link_to("新着記事一覧", articles_path, class: "nav-item nav-link", id:"nav-home-tab", "data-toggle": "tab", role: "tab", "aria-controls": "nav-home", "aria-selected": "true")%>
+          <%= link_to("人気記事一覧", articles_path, class: "nav-item nav-link ", id:"nav-home-tab", "data-toggle": "tab", role: "tab", "aria-controls": "nav-home", "aria-selected": "true")%>
+          <%= link_to("閲覧数の多い記事", rank_index_articles_path, class: "nav-item nav-link ", id:"nav-home-tab", "data-toggle": "tab", role: "tab", "aria-controls": "nav-home", "aria-selected": "true")%>
         </div>
       </nav>
         <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ml-20em">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ml-20em mt-20em">
             <%= render partial: 'article', collection: @articles%> <%#検索機能を@resultsにしないと検索はできない%>
           </div>
           <%= paginate @articles %>
