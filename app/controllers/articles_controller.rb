@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
     @articles = Article.all.order(created_at: :desc).page(params[:page]).per(9)
     @tags = Article.tag_counts_on(:tags).order('count DESC')
     @articles = Article.tagged_with(params[:tag]).page(params[:page]).per(9) if @tag = params[:tag]
-    @rank_articles = Article.order(impressions_count: 'DESC')
+    @rank_articles = Article.order(impressions_count: 'DESC').page(params[:page]).per(9)
   end
 
   def new
@@ -45,6 +45,11 @@ class ArticlesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def rank_index
+    @articles = Article.order(impressions_count: 'DESC').page(params[:page]).per(9)
+    render :index
   end
 
   private

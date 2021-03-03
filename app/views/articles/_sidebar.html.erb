@@ -1,0 +1,15 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+  <div class="position-sticky pt-3">
+    <ul class="nav flex-column ml-5">
+      <li class="nav-item ">
+        人気タグ一覧
+      </li>
+    <% if @tags.present? %>
+      <% @tags.each do |tag| %>
+      <li class="nav-item ">
+        <%= link_to "#{tag.name}(#{tag.taggings_count})",articles_path(tag: tag.name), class: "side-tag text-decoration-none "%>
+      </li>
+      <% end %>
+    <% end %>
+    </ul>
+</nav>

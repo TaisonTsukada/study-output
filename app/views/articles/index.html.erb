@@ -1,51 +1,18 @@
 
 <div class="container-fluid">
   <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <span data-feather="home"></span>
-              新着
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file"></span>
-              トレンド
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="shopping-cart"></span>
-              
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users"></span>
-              人気タグ一覧
-            </a>
-          </li>
-        <% if @tags.present? %>
-          <% @tags.each do |tag| %>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users"></span>
-              <%= link_to "#{tag.name}(#{tag.taggings_count})",articles_path(tag: tag.name)%>
-            </a>
-          </li>
-          <% end %>
-        <%end%>
-        </ul>
-    </nav>
-
+    <%= render partial: "sidebar" %>
     <main class="ml-20em col-9 ms-auto">
-      <div class="album py-5 bg-light">
+      <nav class="mb-2">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <%= link_to("新着記事一覧", articles_path, class: "nav-item nav-link", id:"nav-home-tab", "data-toggle": "tab", role: "tab", "aria-controls": "nav-home", "aria-selected": "true")%>
+          <%= link_to("人気記事一覧", articles_path, class: "nav-item nav-link ", id:"nav-home-tab", "data-toggle": "tab", role: "tab", "aria-controls": "nav-home", "aria-selected": "true")%>
+          <%= link_to("閲覧数の多い記事", rank_index_articles_path, class: "nav-item nav-link ", id:"nav-home-tab", "data-toggle": "tab", role: "tab", "aria-controls": "nav-home", "aria-selected": "true")%>
+        </div>
+      </nav>
         <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ml-20em">
-            <%= render partial: 'article', collection: @results%>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ml-20em mt-20em">
+            <%= render partial: 'article', collection: @articles%> <%#検索機能を@resultsにしないと検索はできない%>
           </div>
           <%= paginate @articles %>
         </div>
