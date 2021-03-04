@@ -1,16 +1,21 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :show, :followings, :followers]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:edit, :update]
   before_action :move_to_index, only: [:edit]
 
   def show
+    @articles = @user.articles.order(created_at: :desc).page(params[:page]).per(9)
   end
 
   def edit
   end
 
   def update
-    current_user.update(update_params)
+    if current_user.update(update_params)
+      redirect_to user_path
+    else
+      render :edit
+    end
   end
 
   def followings
@@ -24,7 +29,7 @@ class UsersController < ApplicationController
   private
 
   def update_params
-    params.require(:user).permit(:image)
+    params.require(:user).permit(:image, :nickname, :email, :password, :password_confirmation )
   end
 
   def set_user

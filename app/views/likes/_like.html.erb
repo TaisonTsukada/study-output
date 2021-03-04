@@ -1,15 +1,15 @@
 <% if user_signed_in? %>
   <% if current_user.liked_by?(@article.id) %>
       <td>
-        <%= link_to destroy_like_path(@article), method: :DELETE, remote: true do %>
-          <i class="fa fa-heart unlike-btn"></i>
+        <%= link_to destroy_like_path(@article), method: :DELETE, remote: true, class: "shadow-none text-decoration-none" do %>
+          <i class="fa fa-heart unlike-btn fa-2x"></i>
         <% end %>
         <%= @article.likes.count %>
       </td>
   <% else %>
       <td>
-        <%= link_to create_like_path(@article), method: :POST, remote: true do %>
-          <i class="fa fa-heart like-btn"></i>
+        <%= link_to create_like_path(@article), method: :POST, remote: true, class: "shadow-none text-decoration-none" do %>
+          <i class="fa fa-heart like-btn fa-2x"></i>
         <% end %>
         <%= @article.likes.count %>
       </td>

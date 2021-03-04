@@ -20,8 +20,8 @@
       </div>
       <div class="d-flex justify-content-sm-between align-items-sm-center">
       <%= link_to user_path(article.user.id) do %>
-        <% if current_user.image.attached? %>
-          <p><%= image_tag(rails_blob_path(@user.image),:size => "30x30", class: "img-circle") %><%= article.user.nickname %></p>
+        <% if article.user.image.attached? %>
+          <p><%= image_tag(rails_blob_path(article.user.image),:size => "30x30", class: "img-circle") %><%= article.user.nickname %></p>
         <% else %>
           <p><%= image_tag("default_user.png", :size => "30x30", class: "img-circle pl-1em") %><%= article.user.nickname %></p>
         <% end %>
