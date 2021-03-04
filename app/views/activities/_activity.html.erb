@@ -20,7 +20,7 @@
           <span>
             <%= link_to article_path(activity.article) do %>
               <% if activity.article.user.avatar.attached? %>
-                <%= image_tag rails_blob_path(activity.article.user.avatar, size: "50x50", class: "image-crcle")%>
+                <%= image_tag(rails_blob_path(activity.article.user.avatar), size: "50x50", class: "img-circle") %>
               <% else %>
                 <%= image_tag("default_user.png", size: "50x50", class: "img-circle")%>
               <% end %>
@@ -38,7 +38,7 @@
             <span>
               <%= link_to article_path(activity.article) do %>
               <% if activity.article.user.avatar.attached? %>
-                <%= image_tag rails_blob_path(activity.article.user.avatar), class: 'icon_mini'%>
+                <%= image_tag(rails_blob_path(activity.article.user.avatar),size: "50x50", class: "img-circle")%>
               <% else %>
                 <%= image_tag("default_user.png", size: "50x50", class: "img-circle")%>
               <% end %>
