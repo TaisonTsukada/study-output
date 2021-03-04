@@ -19,8 +19,8 @@
         <% when 'like' then %>
           <span>
             <%= link_to article_path(activity.article) do %>
-              <% if activity.article.user.image.attached? %>
-                <%= image_tag rails_blob_path(activity.article.user.image, size: "50x50", class: "image-crcle")%>
+              <% if activity.article.user.avatar.attached? %>
+                <%= image_tag rails_blob_path(activity.article.user.avatar, size: "50x50", class: "image-crcle")%>
               <% else %>
                 <%= image_tag("default_user.png", size: "50x50", class: "img-circle")%>
               <% end %>
@@ -37,8 +37,8 @@
           <% else %>
             <span>
               <%= link_to article_path(activity.article) do %>
-              <% if activity.article.user.image.attached? %>
-                <%= image_tag rails_blob_path(activity.article.user.image), class: 'icon_mini'%>
+              <% if activity.article.user.avatar.attached? %>
+                <%= image_tag rails_blob_path(activity.article.user.avatar), class: 'icon_mini'%>
               <% else %>
                 <%= image_tag("default_user.png", size: "50x50", class: "img-circle")%>
               <% end %>

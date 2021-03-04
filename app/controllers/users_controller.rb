@@ -1,22 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :show, :followings, :followers]
-  before_action :authenticate_user!, only: [:edit, :update]
-  before_action :move_to_index, only: [:edit]
+  before_action :set_user, only: [:show, :followings, :followers]
+  before_action :authenticate_user!, only: [:update]
 
   def show
     @articles = @user.articles.order(created_at: :desc).page(params[:page]).per(9)
   end
 
-  def edit
-  end
-
-  def update
-    if current_user.update(update_params)
-      redirect_to user_path
-    else
-      render :edit
-    end
-  end
 
   def followings
     @users = @user.followings.all
