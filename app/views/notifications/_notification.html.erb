@@ -27,8 +27,8 @@
         <% else %>
           <span>
             <%= link_to article_path(notification.article) do %>
-             <% if notification.article.user.image.attached? %>
-              <%= image_tag rails_blob_path(notification.article.user.image), class: 'icon_mini'%>
+             <% if notification.article.user.avatar.attached? %>
+              <%= image_tag rails_blob_path(notification.article.user.avatar), class: 'icon_mini'%>
              <% else %>
               <%= image_tag("default_user.png", size: "50x50", class: "img-circle")%>
              <% end %>
