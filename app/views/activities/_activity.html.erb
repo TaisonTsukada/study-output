@@ -1,6 +1,5 @@
 <% visitor = activity.visitor %>
 <% visited = activity.visited %>
-<div class="col-md-6 max-auto">
   <div class= "form-inline">
       <span>
         <% case activity.action
@@ -12,7 +11,7 @@
               <%= image_tag("default_user.png", size: "50x50", class: "img-circle") %>
             <% end %>
             <strong>
-              <%= visited.name %>
+              <%= visited.nickname %>
             </strong>
           <% end %>
           <%= "さんをフォローしました"%>
@@ -57,7 +56,6 @@
       </span>
     </div>
     <div class="small.text-muted.text-right">
-      <%= time_ago_in_words(activity.created_at).upcase %>
+      <%= time_ago_in_words(activity.created_at).upcase %>前
     </div>
     <hr>
-</div>

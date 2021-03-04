@@ -1,9 +1,13 @@
 <% comments.each do |comment| %>
   <% unless comment.id.nil? %>
     <p><%= link_to "#{comment.user.nickname}",user_path(comment.user_id) %></p>
-    <p>コメント：<%= comment.text %></p>
+    <div class="d-flex justify-content-between">
+      <p><%= comment.text %></p>
+      <small class="text-muted"><%= time_ago_in_words(comment.created_at) %>前</small>
+    </div>
     <% if comment.user == current_user %>
       <p><%= link_to 'コメントを削除する', article_comment_path(comment.article_id, comment.id), method: :delete, remote: true %></p>
     <% end %>
+    <hr>
   <% end %>
 <% end %>

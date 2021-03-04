@@ -1,17 +1,58 @@
-<%= @user.nickname %>
+<main>
+  <section class="pt-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-8 col-md-10 mx-auto">
+         <% if @user.image.attached? %>
+            <p><%= image_tag(rails_blob_path(@user.image), size: "100x100", class: "img-circle") %></p>
+          <% else %>
+            <p><%= image_tag("default_user.png", size: "100x100", class: "img-circle") %></p>
+          <% end %>
+        <h1 class="fw-light"><%= @user.nickname%></h1>
+      <% if user_signed_in? %>
+        <div id="follow-ajax">
+          <%= render 'shared/follow',user: @user %>
+       </div>
+      <% end %>
+        <p>
+          <%= link_to " #{@user.followings.count} フォロー", followings_user_path(@user.id), class: "mr-2 shadow-none text-decoration-none", style: "color: black;" %>
+          <%= link_to " #{@user.followers.count} フォロワー", followers_user_path(@user.id), class: "ml-2 shadow-none text-decoration-none", style: "color: black;" %>
+        </p>
+      <% if user_signed_in? &&current_user.id == @user.id %>
+        <p>
+          <span class= "mr-4">
+          <%= link_to  edit_user_path(current_user.id)  do %>
+            <i class="fas fa-user-edit">編集</i>
+          <% end %>
+          </span>
+          
+          <span>
+          <%= link_to  activities_path  do %>
+            <i class="fas fa-user-clock">履歴</i>
+          <% end %>
+          </span>
+        </p>
+      <% end %>
+      </div>
+    </div>
+  </section>
 
-<h2>プロフィール画像</h2>
-<% if @user.image.attached? %>
-  <p><%= image_tag(rails_blob_path(@user.image),:size => "50x50") %></p>
-<% else %>
-  <p><%= image_tag("default_user.png", :size => "50x50") %></p>
-<% end %>
-<% if user_signed_in? %>
-  <%= link_to "ユーザー情報編集", edit_user_path(current_user.id) %>
-  <%= link_to "ユーザーアクティビティ", activities_path %>
-  <div id="follow-ajax">
-  <%= render 'shared/follow',user: @user %>
-</div>
-<% end %>
-<%= link_to "フォロー: #{@user.followings.count}", followings_user_path(@user.id) %>
-<%= link_to "フォロワー: #{@user.followers.count}", followers_user_path(@user.id) %>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <nav class="mb-2">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <%= link_to("投稿した記事", articles_path, class: "nav-item nav-link", id:"nav-home-tab", "data-toggle": "tab", role: "tab", "aria-controls": "nav-home", "aria-selected": "true")%>
+        <% if user_signed_in? && current_user.id == @user.id %>
+          <%= link_to("ストックした記事",  articles_path, class: "nav-item nav-link ", id:"nav-home-tab", "data-toggle": "tab", role: "tab", "aria-controls": "nav-home", "aria-selected": "true")%>
+          <%= link_to("いいねした記事",  articles_path, class: "nav-item nav-link ", id:"nav-home-tab", "data-toggle": "tab", role: "tab", "aria-controls": "nav-home", "aria-selected": "true")%>
+        <% end %>
+        </div>
+      </nav>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+         <%= render partial: "articles/article",collection: @user.articles %>
+      </div>
+      <div class= "ml-4 pagination">
+        <%= paginate @articles %>
+      </div>
+    </div>
+  </div>
+</main>

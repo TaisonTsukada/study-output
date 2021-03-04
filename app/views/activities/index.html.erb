@@ -1,11 +1,22 @@
 
 <% if @activities.exists? %>
-  <% @activities.each do |activity| %>
-    <%= render 'activity', activity: activity %>
-  <% end %>
-  <%= paginate @activities%>
+<section class="pt-5 container">
+    <div class="row py-lg-5">
+      <div class="col-lg-8 col-md-10 mx-auto">
+      <h1>ユーザー履歴一覧</h1>
+        <% @activities.each do |activity| %>
+          <%= render 'activity', activity: activity %>
+        <% end %>
+        <%= paginate @activities%>
+      </div>
+    </div>
+</section>
 <% else %>
-  <p class="text-center">
-    アクティビティはありません
-  </p>
+  <section class="pt-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-8 col-md-10 mx-auto">
+       <p>履歴はありません</p>
+      </div>
+    </div>
+  </section>
 <%end%>
