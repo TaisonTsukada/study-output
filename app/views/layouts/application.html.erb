@@ -60,8 +60,15 @@
             <% end %>
         </li>
       <% else %>
-        <li class= "header-list"><%= link_to "サインイン",new_user_session_path, class: 'btn btn-default'%>
-        <li class= "header-list"><%= link_to "サインアップ",new_user_registration_path, class: 'btn btn-default'%>
+        <li class= "header-list">
+          <%= link_to new_user_session_path do%>
+            <button type="button" class="create-btn">ログイン</button>
+          <% end %>
+        </li>
+        <li class= "header-list">
+        <%= link_to new_user_registration_path do%>
+          <button type="button" class="create-btn">新規登録</button>
+        <% end %>
       <% end %>
       </ul>
     </div>
