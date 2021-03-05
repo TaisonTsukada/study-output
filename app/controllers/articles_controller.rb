@@ -5,10 +5,12 @@ class ArticlesController < ApplicationController
 
   def index
     @tags = Article.tag_counts_on(:tags).order('count DESC')
-    if params[:option] == "view"
+    if params[:option] == "views"
       @articles = Article.includes(:user, :likes, :tags).order(impressions_count: 'DESC').page(params[:page]).per(9)
     elsif params[:option] == "likes"
-      @articles = Article.includes(:user, :likes, :tags).joins(:likes).order('likes.count desc').page(params[:page]).per(9)
+      article_like_count = Article.joins(:likes).group(:article_id).count
+      article_liked_ids = Hash[article_like_count.sort_by{ |_, v| -v }].keys
+      @articles = Article.includes(:user, :likes, :tags).where(id: article_liked_ids).order(created_at: :desc).page(params[:page]).per(9)
     else
       @articles = Article.includes(:user,:likes, :tags).order(created_at: :desc).page(params[:page]).per(9)
     end

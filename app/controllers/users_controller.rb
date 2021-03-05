@@ -3,7 +3,20 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:update]
 
   def show
-    @articles = @user.articles.order(created_at: :desc).page(params[:page]).per(9)
+    if params[:option] == "stocks"
+      stock_articles = Stock.get_stock_articles(current_user)
+      @articles = Kaminari.paginate_array(stock_articles).page(params[:page]).per(9)
+    elsif params[:option] == "likes"
+      @articles =[]
+      articles_id = Like.where(user_id: current_user.id).map{ |h| h[:article_id] }
+      articles_id.each do |article_id|
+        @articles = Article.find_by(id: article_id)
+      end
+      @articles.to_s
+    else
+      @articles = @user.articles.order(created_at: :desc).page(params[:page]).per(9)
+    end
+    
   end
 
 
