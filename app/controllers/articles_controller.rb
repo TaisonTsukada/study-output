@@ -11,6 +11,8 @@ class ArticlesController < ApplicationController
       article_like_count = Article.joins(:likes).group(:article_id).count
       article_liked_ids = Hash[article_like_count.sort_by{ |_, v| -v }].keys
       @articles = Article.includes(:user, :likes, :tags).where(id: article_liked_ids).order(created_at: :desc).page(params[:page]).per(9)
+    elsif params[:id] == "timeline"
+      @articles = Article.where(user_id: [*current_user.following_ids]).order(created_at: :desc).page(params[:page]).per(9)
     else
       @articles = Article.includes(:user,:likes, :tags).order(created_at: :desc).page(params[:page]).per(9)
     end

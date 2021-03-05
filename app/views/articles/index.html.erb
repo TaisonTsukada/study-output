@@ -12,6 +12,7 @@
             <%= link_to("新着記事", articles_path, class: "nav-item nav-link active") %>
             <%= link_to("いいねの多い記事", articles_path(option: "likes"), class: "nav-item nav-link ")%>
             <%= link_to("閲覧数の多い記事", articles_path(option: "views"), class: "nav-item nav-link ")%>
+            <%= link_to("タイムライン", articles_path(option: "timeline"), class: "nav-item nav-link ")%>
           </div>
         </div>
       </nav>
