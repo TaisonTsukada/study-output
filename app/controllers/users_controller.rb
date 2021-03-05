@@ -7,12 +7,8 @@ class UsersController < ApplicationController
       stock_articles = Stock.get_stock_articles(current_user)
       @articles = Kaminari.paginate_array(stock_articles).page(params[:page]).per(9)
     elsif params[:option] == "likes"
-      @articles =[]
-      articles_id = Like.where(user_id: current_user.id).map{ |h| h[:article_id] }
-      articles_id.each do |article_id|
-        @articles = Article.find_by(id: article_id)
-      end
-      @articles.to_s
+      likes_articles = Like.get_likes_articles(current_user)
+      @articles = Kaminari.paginate_array(likes_articles).page(params[:page]).per(9)
     else
       @articles = @user.articles.order(created_at: :desc).page(params[:page]).per(9)
     end
