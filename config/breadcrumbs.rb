@@ -1,5 +1,41 @@
 crumb :root do
-  link "Home", root_path
+  link "トップページ", root_path
+end
+
+crumb :user do |user|
+  user = User.find(params[:id])
+  link user.nickname, user_path(user)
+  parent :article
+end
+
+
+crumb :user_activity do |user|
+  user = User.find(params[:id])
+  link "履歴", activities_path
+  parent :user, user
+end
+
+crumb :following_user do |user|
+  user = User.find(params[:id])
+  link "フォロー", following_user_path
+  parent :user, user
+end
+
+crumb :followers_user do |user|
+  user = User.find(params[:id])
+  link "フォロワー", followers_user
+  parent :user, user
+end
+
+crumb :article do |article|
+  article = Article.find(params[:id])
+  link "#{article.user.nickname}さんの投稿記事", article_path(article)
+  parent :root
+end
+
+crumb :notification do
+  link "通知一覧", notifications_path
+  parent :root
 end
 
 # crumb :projects do
