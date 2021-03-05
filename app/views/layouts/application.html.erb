@@ -25,7 +25,7 @@
       </div>
       <ul class="mypage-block">
         <li class= "header-list search"><dl class="searchbox">
-            <%= search_form_for @q, url: articles_path do |f| %>
+            <%= search_form_for @q_header, url: articles_path do |f| %>
               <dt><%= f.text_field :title_or_tags_name_cont ,placeholder: '記事検索' %></dt>
               <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
             <% end %>

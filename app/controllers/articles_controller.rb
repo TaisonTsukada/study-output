@@ -13,13 +13,15 @@ class ArticlesController < ApplicationController
       @articles = Article.includes(:user, :likes, :tags).where(id: article_liked_ids).order(created_at: :desc).page(params[:page]).per(9)
     elsif params[:id] == "timeline"
       @articles = Article.where(user_id: [*current_user.following_ids]).order(created_at: :desc).page(params[:page]).per(9)
+    elsif @q_header
+      @articles = @q_header.result(distinct: true).page(params[:page]).per(9)
     else
       @articles = Article.includes(:user,:likes, :tags).order(created_at: :desc).page(params[:page]).per(9)
     end
-
     @articles = Article.tagged_with(params[:tag]).includes(:user, :likes).page(params[:page]).per(9) if @tag = params[:tag]
   end
 
+  
   def new
     @article = Article.new
   end
@@ -57,11 +59,7 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def rank_index
-    @articles = Article.order(impressions_count: 'DESC').page(params[:page]).per(9)
-    render :index
-  end
-
+  
   private
 
   def article_params
