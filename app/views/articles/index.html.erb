@@ -8,8 +8,8 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <%= link_to("新着記事", articles_path, class: "nav-item nav-link") %>
+          <div class="navbar-nav ">
+            <%= link_to("新着記事", articles_path, class: "nav-item nav-link active") %>
             <%= link_to("いいねの多い記事", articles_path(option: "likes"), class: "nav-item nav-link ")%>
             <%= link_to("閲覧数の多い記事", articles_path(option: "views"), class: "nav-item nav-link ")%>
           </div>
