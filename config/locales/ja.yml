@@ -8,6 +8,15 @@ ja:
       truncate: "..."
 
   activerecord:
+    attributes:
+     user:
+       nickname: ニックネーム
+       avatar: プロフィール画像
+     article:
+       title: タイトル
+       image: サムネイル
+       tag_list: タグ
+       content: 記事本文
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
