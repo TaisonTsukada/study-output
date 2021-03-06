@@ -18,6 +18,7 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.includes(:user,:likes, :tags).order(created_at: :desc).page(params[:page]).per(9)
     end
+
     @articles = Article.tagged_with(params[:tag]).includes(:user, :likes).page(params[:page]).per(9) if @tag = params[:tag]
   end
 
@@ -36,9 +37,14 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
+    @comment = Comment.new 
     @comments = @article.comments
     impressionist(@article, nil, unique: [:ip_address])
+    tag_list = @article.tag_list
+    @articles= Article.tagged_with(tag_list).where.not(id: @article.id).limit(5)
+    if @articles.blank?
+      @articles = Article.order("RAND()").where.not(id: @article.id).limit(5)
+    end
   end
 
   def destroy
