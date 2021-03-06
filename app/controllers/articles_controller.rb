@@ -39,6 +39,7 @@ class ArticlesController < ApplicationController
     @comment = Comment.new
     @comments = @article.comments
     impressionist(@article, nil, unique: [:ip_address])
+    articles_tag = @article.
   end
 
   def destroy
