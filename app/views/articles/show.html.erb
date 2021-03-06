@@ -80,7 +80,12 @@
         </div>
       </div>
     </section>
-    <%= render "show"%>
+    <div class="container recomend-section px-5">
+    <h3 class="mb-4">あなたにおすすめの記事</h3>
+    <% @articles.each do |article| %>
+      <%= render partial: "show", locals: { article: article } %>
+    <% end %>
+    </div>
   </div>
 </main>
 </body>
