@@ -10,21 +10,21 @@
         </div>
       </div>
       <div class="row mb-3">
-        <%= f.label :title,  "題名", class: "col-sm-2 col-form-label " %>
+        <%= f.label :title,  "タイトル", class: "col-sm-2 col-form-label " %>
         <div class="col-sm-10">
-          <%= f.text_field :title, class: "form-control w-75" %>
+          <%= f.text_field :title, class: "form-control w-75", placeholder: "20文字以内で入力してください" %>
         </div>
       </div>
       <div class="row mb-3">
         <%= f.label :tag_list, "タグ", class: "col-sm-2 col-form-label" %>
         <div class="col-sm-10">
-          <%= f.text_field :tag_list,value: @article.tag_list.join(","), class:"form-control w-75" %>
+          <%= f.text_field :tag_list,value: @article.tag_list.join(","), class:"form-control w-75" , placeholder: "タグは5個まで登録可能です""(タグは「,」で区切ってください)"%>
         </div>
       </div>
       <div class="row mb-3">
         <%= f.label :content, "記事本文", class: "col-sm-2 col-form-label" %>
         <div class="col-sm-10 mt-4">
-          <%= f.rich_text_area :content,size: "500x500", class: "form-control" %>
+          <%= f.rich_text_area :content,size: "500x500", class: "form-control", placeholder: "記事本文は10文字以上1000文字未満で入力してください" %>
         </div>
       </div>
       <%= f.submit "公開する", class: "create-btn mt-4 p-2 pb-2" %>
