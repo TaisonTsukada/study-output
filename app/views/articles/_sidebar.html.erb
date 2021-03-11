@@ -2,7 +2,10 @@
   <div class="position-sticky pt-3">
     <ul class="nav flex-column ml-5">
       <li class="nav-item ">
-        人気タグ一覧
+        <div class="mb-3">
+          <i class="fa fa-tags" aria-hidden="true"></i>
+          <span class="text-decoration-none shadow-none" style="font-weight: bold;">人気タグ</span>
+        </div>
       </li>
     <% if @tags.present? %>
       <% @tags.each do |tag| %>
