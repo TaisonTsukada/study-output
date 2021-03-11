@@ -14,7 +14,7 @@ class Article < ApplicationRecord
   with_options presence: true do
     validates :title, length: {maximum: 25}
     validates :user_id
-    validates :content, length: {maximum: 1000, minimum: 10, too_short: "文字数は10文字以上で入力してください", too_long: "文字数は1000文字以内で入力してください"}
+    validates :content
     validates :tag_list
   end
   validate  :tag_list_tag_validation
