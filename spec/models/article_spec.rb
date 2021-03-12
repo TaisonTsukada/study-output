@@ -3,9 +3,8 @@ require 'rails_helper'
 RSpec.describe Article, type: :model do
   describe '投稿情報の保存' do
     before do
-      @user = FactoryBot.create(:user)
-      @article = Article.new(title: '世界史', content: '世界史の勉強には資料集が有効です。', tag_list: '世界史', user_id: @user.id)
-      sleep(1)
+      user = FactoryBot.create(:user)
+      @article = FactoryBot.build(:article, user_id: user.id)
     end
     context '投稿した記事の保存ができるとき' do
       it '全ての情報を正しく入力すれば保存される' do
