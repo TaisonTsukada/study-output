@@ -68,3 +68,4 @@ gem 'kaminari'
 gem 'ransack'
 gem 'impressionist'
 gem "gretel"
+gem "aws-sdk-s3", require: false
