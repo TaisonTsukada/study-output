@@ -17,12 +17,12 @@ RSpec.describe Stock, type: :model do
       it 'user_idが無いとストックできない' do
         @stock.user_id = ""
         @stock.valid?
-        expect(@stock.errors.full_messages).to include("Userを入力してください", "Userを入力してください")
+        expect(@stock.errors.full_messages).to include("Userを入力してください")
       end
       it 'article_idが無いとストックできない' do
         @stock.article_id =""
         @stock.valid?
-        expect(@stock.errors.full_messages).to include("Articleを入力してください", "Articleを入力してください")
+        expect(@stock.errors.full_messages).to include("Articleを入力してください")
       end
     end
   end
