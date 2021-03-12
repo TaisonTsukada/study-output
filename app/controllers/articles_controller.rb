@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @article.comments
-    impressionist(@article, nil, unique: [:ip_address])
+    #impressionist(@article, nil, unique: [:ip_address])
     tag_list = @article.tag_list
     @articles = Article.tagged_with(tag_list).where.not(id: @article.id).limit(5)
     @articles = Article.order('RAND()').where.not(id: @article.id).limit(5) if @articles.blank?
