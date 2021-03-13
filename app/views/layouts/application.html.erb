@@ -68,6 +68,12 @@
         <%= link_to new_user_registration_path do%>
           <button type="button" class="create-btn">新規登録</button>
         <% end %>
+        </li>
+        <li class= "header-list">
+        <%= link_to users_guest_sign_in_path, method: :post do %>
+          <button type="button" class="create-btn">ゲスト</button>
+        <% end %>
+        </li>
       <% end %>
       </ul>
     </div>
