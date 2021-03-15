@@ -8,9 +8,7 @@ Rails.application.routes.draw do
   root to: "articles#index"
   resources :articles do
     resources :comments, only: [:create, :destroy]
-    collection do
-      get 'search'
-    end
+
   end
   
   post 'like/:id' => 'likes#create', as: 'create_like'
