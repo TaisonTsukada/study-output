@@ -1,6 +1,19 @@
 <template>
   <div id="app">
-    <p>{{ message }}</p>
+    <nav>
+      <router-link 
+        to="/" 
+        active-class="link--active"
+        exact
+        class="link"
+      >Home</router-link>
+      <router-link 
+        to="/users" 
+        class="link"
+        active-class="link--active"
+        exact
+      >Users</router-link>
+    </nav>
   </div>
 </template>
 
