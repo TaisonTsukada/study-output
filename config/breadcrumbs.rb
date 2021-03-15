@@ -5,7 +5,7 @@ end
 crumb :user do |user|
   user = User.find(params[:id])
   link user.nickname, user_path(user)
-  parent :article
+  parent :root
 end
 
 
