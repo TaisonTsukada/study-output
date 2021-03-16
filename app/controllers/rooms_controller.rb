@@ -28,9 +28,6 @@ class RoomsController < ApplicationController
 
   private
   def false_to_true
-    entry = @room.entries.where.(user_id: current_user)
-    entry.each do |e|
-      e.update_attributes(checked: true)
-    end
+    
   end
 end

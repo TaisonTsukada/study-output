@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_102137) do
+ActiveRecord::Schema.define(version: 2021_03_16_022049) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -132,16 +132,6 @@ ActiveRecord::Schema.define(version: 2021_03_16_102137) do
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
-  create_table "reads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "message_id"
-    t.boolean "complete", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["message_id"], name: "index_reads_on_message_id"
-    t.index ["user_id"], name: "index_reads_on_user_id"
-  end
-
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "follow_id"
@@ -217,8 +207,6 @@ ActiveRecord::Schema.define(version: 2021_03_16_102137) do
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "reads", "messages"
-  add_foreign_key "reads", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
   add_foreign_key "stocks", "articles"
