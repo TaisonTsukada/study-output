@@ -15,6 +15,7 @@ consumer.subscriptions.create("MessageChannel", {
     `<div class="outgoing_msg" >
       <div class="sent_msg">
         <p>${ data.content.message}</p>
+        <span class="time_date">${data.content.created_at}</span>
       </div>
     </div>`;
     const messages = document.getElementById('messages');
