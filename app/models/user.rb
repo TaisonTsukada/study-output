@@ -13,6 +13,10 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :stocks, dependent: :destroy
 
+  # DM機能のアソシエーション
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
+
   # フォロー機能のアソシエーション
   has_many :relationships, foreign_key: 'user_id', dependent: :destroy
   has_many :followings, through: :relationships, source: :follow
