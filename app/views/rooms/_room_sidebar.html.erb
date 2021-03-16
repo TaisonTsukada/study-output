@@ -1,0 +1,37 @@
+        <div class="inbox_people">
+          <div class="headind_srch">
+            <div class="recent_heading">
+              <h4>メッセージ</h4>
+            </div>
+            <div class="srch_bar">
+              <div class="stylish-input-group">
+                <input type="text" class="search-bar"  placeholder="Search" >
+                <span class="input-group-addon">
+                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                </span> </div>
+            </div>
+          </div>
+          <div class="inbox_chat">
+          <% @rooms.each do |room| %>
+            <div class="chat_list">
+              <div class="chat_people">
+                <div class="chat_img"> 
+
+                  <% entry = room.entries.where.not(user_id: current_user) %>
+                  <% user = entry[0].user%>
+                  
+                  <% if user.avatar.attached? %>
+                    <%= image_tag(rails_blob_path(user.avatar), size: "35x35", class: "img-circle") %>
+                  <% else %>
+                    <%= image_tag("default_user.png", size: "35x35", class: "img-circle") %>
+                  <% end %>
+                </div>
+                <div class="chat_ib">
+                  <h5><%= opponent_user(room) %><span class="chat_date"><%= time_ago_in_words(room.created_at) %>前</span></h5>
+                  <p><%= most_new_message_preview(room) %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          </div>
+        </div>

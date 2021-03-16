@@ -16,6 +16,7 @@ class User < ApplicationRecord
   # DM機能のアソシエーション
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :rooms, through: :entries
 
   # フォロー機能のアソシエーション
   has_many :relationships, foreign_key: 'user_id', dependent: :destroy
