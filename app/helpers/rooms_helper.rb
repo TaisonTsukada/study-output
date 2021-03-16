@@ -25,10 +25,13 @@ module RoomsHelper
     tag.p "#{name}", class: "dm_list__content__link__box__name"
   end
 
-  def opponent_user_avatar(room)
+  def opponent_user_span(room)
+    # 中間テーブルから相手ユーザーのデータを取得
     entry = room.entries.where.not(user_id: current_user)
-    @user = entry[0].user
+    # 相手ユーザーの名前を取得
+    name = entry[0].user.nickname
+    # 名前を表示
+    tag.span "#{name}", class: "dm_list__content__link__box__name"
   end
-
 end
 

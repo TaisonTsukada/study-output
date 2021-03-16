@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
+  
 
   def index
     @rooms = current_user.rooms.joins(:messages).includes(:messages).order("messages.created_at DESC")
@@ -22,6 +23,14 @@ class RoomsController < ApplicationController
       @entries = @room.entries
     else
       redirect_back(fallback_location: root_path)
+    end
+  end
+
+  private
+  def false_to_true
+    entry = @room.entries.where.(user_id: current_user)
+    entry.each do |e|
+      e.update_attributes(checked: true)
     end
   end
 end

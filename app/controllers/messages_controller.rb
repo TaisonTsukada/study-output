@@ -4,12 +4,12 @@ class MessagesController < ApplicationController
   def create
     if Entry.where(user_id: current_user.id, room_id: params[:message][:room_id]).present?
       @message = Message.new(message_params)
-      @message.save
-      ActionCable.server.broadcast 'message_channel', content: @message
+      if @message.save
+        ActionCable.server.broadcast 'message_channel', content: @message
+      end
     else
-      flash[:alert] = "メッセージ送信に失敗しました。"
+      redirect_to "/rooms/#{@message.room_id}"
     end
-    redirect_to "/rooms/#{@message.room_id}"
   end
 
   private
