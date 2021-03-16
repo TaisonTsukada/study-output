@@ -17,13 +17,13 @@ end
 
 crumb :following_user do |user|
   user = User.find(params[:id])
-  link "フォロー", following_user_path
+  link "フォロー", followings_user_path
   parent :user, user
 end
 
 crumb :followers_user do |user|
   user = User.find(params[:id])
-  link "フォロワー", followers_user
+  link "フォロワー", followers_user_path
   parent :user, user
 end
 
