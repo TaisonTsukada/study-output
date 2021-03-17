@@ -8,10 +8,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ">
-            <%= link_to("新着記事", articles_path, class: "nav-item nav-link active") %>
-            <%= link_to("いいねの多い記事", articles_path(option: "likes"), class: "nav-item nav-link ")%>
-            <%= link_to("閲覧数の多い記事", articles_path(option: "views"), class: "nav-item nav-link ")%>
-            <%= link_to("タイムライン", articles_path(option: "timeline"), class: "nav-item nav-link ")%>
+            <%= active_link_to("新着記事", articles_path(option: "new"), active: { option: "new"}, class: "nav-item nav-link") %>
+            <%= active_link_to("いいねの多い記事", articles_path(option: "likes"),active: { option: 'likes' }, class: "nav-item nav-link ")%>
+            <%= active_link_to("閲覧数の多い記事", articles_path(option: "views"),active: { option: 'views' }, class: "nav-item nav-link ")%>
+            <%= active_link_to("タイムライン", articles_path(option: "timeline"),active: { option: 'timeline' }, class: "nav-item nav-link ")%>
           </div>
         </div>
       </nav>

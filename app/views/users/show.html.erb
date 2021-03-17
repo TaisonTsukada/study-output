@@ -60,10 +60,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <%= link_to("投稿した記事", user_path(@user.id), class: "nav-item nav-link active") %>
+            <%= active_link_to("投稿した記事", user_path(id: @user.id, option: 'created'), class: "nav-item nav-link", active: { option: 'created' }) %>
           <% if user_signed_in? && @user.id == current_user.id %>
-            <%= link_to("いいねした記事", user_path(option: "likes", id: @user.id), class: "nav-item nav-link ")%>
-            <%= link_to("ストックした記事", user_path(option: "stocks", id: @user.id), class: "nav-item nav-link ")%>
+            <%= active_link_to("いいねした記事", user_path(option: "likes", id: @user.id), class: "nav-item nav-link ", active: { option: 'likes' })%>
+            <%= active_link_to("ストックした記事", user_path(option: "stocks", id: @user.id), class: "nav-item nav-link ", active: { option: 'stocks' })%>
           <% end %>
           </div>
         </div>
