@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 2021_03_16_022049) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "impressions_count", default: 0
     t.integer "likes_count"
+    t.integer "impressions_count", default: 0
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
