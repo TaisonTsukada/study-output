@@ -31,12 +31,28 @@
             </dl>
         </li>
       <% if user_signed_in? %>
-        <% if unchecked_notifications.any? %>
-          <i class="fa fa-circle", style="color: gold;"></i>
-        <% end %>
+        <li class= "header-list mr-1">
+          <%= link_to  rooms_path do %>
+            <% if unchecked_dmnotifications.any? %>
+              <span class="fa-stack">
+                <i class="fas fa-envelope fa-stack-2x"></i>
+                <i class="fa fa-circle fa-stack-1x n-circle"></i>
+              </span>
+            <% else %>
+              <i class="fas fa-envelope fa-2x"></i>
+            <% end %>
+          <% end %>
+        </li>
         <li class= "header-list">
           <%= link_to  notifications_path do %>
-            <i class="fas fa-bell fa-2x"></i>
+            <% if unchecked_notifications.any? %>
+              <span class="fa-stack">
+                <i class="fas fa-bell fa-stack-2x "></i>
+                <i class="fa fa-circle fa-stack-1x n-circle"></i>
+              </span>
+            <% else %>
+              <i class="fas fa-bell fa-2x"></i>
+            <% end %>
           <% end %>
         </li>
         <li class= "header-list"><div class="dropdown">
@@ -49,6 +65,8 @@
               </button>
               <div class="dropdown-menu dropdown-menu-right btn-sm">
               <%= link_to "マイページ", user_path(current_user.id), class: 'dropdown-item'%>
+              <%= link_to "いいねした投稿", user_path(id: current_user.id, option: "likes"), class: 'dropdown-item'%>
+              <%= link_to "ストックした投稿", user_path(id: current_user.id, option: "stocks"), class: 'dropdown-item'%>
               <hr>
               <%= link_to "ログアウト", destroy_user_session_path, class: 'dropdown-item', method: :delete %>
               </div>

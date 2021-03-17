@@ -2,7 +2,7 @@
   <section class="pt-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-8 col-md-10 mx-auto">
-         <% if @user.avatar.attached? %>
+        <% if @user.avatar.attached? %>
             <p><%= image_tag(rails_blob_path(@user.avatar), size: "100x100", class: "img-circle") %></p>
           <% else %>
             <p><%= image_tag("default_user.png", size: "100x100", class: "img-circle") %></p>
@@ -11,7 +11,7 @@
       <% if user_signed_in? %>
         <div id="follow-ajax">
           <%= render 'shared/follow',user: @user %>
-       </div>
+        </div>
       <% end %>
         <p>
           <%= link_to " #{@user.followings.count} フォロー", followings_user_path(@user.id), class: "mr-2 shadow-none text-decoration-none", style: "color: black;" %>
@@ -31,6 +31,20 @@
           <% end %>
           </span>
         </p>
+      <% end %>
+      <% unless @user.id == current_user.id %>
+        <% if (current_user.following? @user) && (@user.following? current_user)  %>
+        <% if @isRoom == true %>
+          <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
+        <% else %>
+          <%= form_for @room do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+            <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
+          <% end %>
+        <% end %>
+        <% end %>
       <% end %>
       </div>
     </div>
@@ -53,7 +67,7 @@
         </div>
       </nav>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-         <%= render partial: "articles/article",collection: @articles %>
+        <%= render partial: "articles/article",collection: @articles %>
       </div>
       <div class= "ml-4 pagination">
         <%= paginate @articles %>

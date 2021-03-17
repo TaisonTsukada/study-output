@@ -1,0 +1,18 @@
+    <div class="container">
+      <div class="messaging">
+      <div class="inbox_msg">
+        <%= render 'room_sidebar'%>
+        <%= render 'messages'%>
+          <div class="type_msg">
+            <div class="input_msg_write">
+              <%= form_with model: @message do |f| %>
+              <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 70, class:"write_msg" %>
+              <%= f.hidden_field :room_id, value: @room.id %>
+              <%= button_tag type: 'submit', class: "msg_send_btn" do %>
+                <i class="fas fa-paper-plane"></i>
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>

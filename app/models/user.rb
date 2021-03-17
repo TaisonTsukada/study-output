@@ -13,6 +13,13 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :stocks, dependent: :destroy
 
+  # DM機能のアソシエーション
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
+  has_many :rooms, through: :entries
+  has_many :active_dmnotifications, class_name: 'Dmnotification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_dmnotifications, class_name: 'Dmnotification', foreign_key: 'visited_id', dependent: :destroy
+
   # フォロー機能のアソシエーション
   has_many :relationships, foreign_key: 'user_id', dependent: :destroy
   has_many :followings, through: :relationships, source: :follow
