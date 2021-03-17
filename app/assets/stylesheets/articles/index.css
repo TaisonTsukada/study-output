@@ -3,7 +3,8 @@ body {
   font-size: .875rem;
   height: 100%;
 }
-.container-fluid{
+.container-fluid html .row .sidebar,
+.taison{
   height: 100%;
 }
 

@@ -1,8 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   ActionCable.server.config.disable_request_forgery_protection = true
-  config.action_cable.url = "ws://【Elastic IP】/cable" 
-  config.action_cable.allowed_request_origins = ['http://【Elastic IP】']
+  config.action_cable.url = "ws://52.198.51.125/cable" 
+  config.action_cable.allowed_request_origins = ['http://52.198.51.125']
 
   # Code is not reloaded between requests.
   config.cache_classes = true
