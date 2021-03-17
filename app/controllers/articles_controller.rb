@@ -18,8 +18,11 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.includes(:user, :likes, :tags).order(created_at: :desc).page(params[:page]).per(9)
     end
-
     @articles = Article.tagged_with(params[:tag]).includes(:user, :likes).order(created_at: :desc).page(params[:page]).per(9) if @tag = params[:tag]
+
+    if user_signed_in?
+      @notifications = current_user.passive_notifications.page(params[:page]).per(5)
+    end
   end
 
   def new
