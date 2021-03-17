@@ -9,10 +9,9 @@ crumb :user do |user|
 end
 
 
-crumb :user_activity do |user|
-  user = User.find(params[:id])
-  link "履歴", activities_path
-  parent :user, user
+crumb :user_activity do 
+  link "あなたの履歴", activities_path
+  parent :root
 end
 
 crumb :following_user do |user|
