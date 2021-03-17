@@ -33,7 +33,14 @@
       <% if user_signed_in? %>
         <li class= "header-list mr-1">
           <%= link_to  rooms_path do %>
-            <i class="fas fa-envelope fa-2x"></i>
+            <% if unchecked_dmnotifications.any? %>
+              <span class="fa-stack">
+                <i class="fas fa-envelope fa-stack-2x"></i>
+                <i class="fa fa-circle fa-stack-1x n-circle"></i>
+              </span>
+            <% else %>
+              <i class="fas fa-envelope fa-2x"></i>
+            <% end %>
           <% end %>
         </li>
         <li class= "header-list">

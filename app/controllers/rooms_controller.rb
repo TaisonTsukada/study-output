@@ -21,6 +21,11 @@ class RoomsController < ApplicationController
       @messages = @room.messages
       @message = Message.new
       @entries = @room.entries
+
+      @dmnotifications = current_user.passive_dmnotifications
+      @dmnotifications.where(checked: false).each do |dmnotification|
+        dmnotification.update_attributes(checked: true)
+      end
     else
       redirect_back(fallback_location: root_path)
     end
