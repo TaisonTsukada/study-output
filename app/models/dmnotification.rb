@@ -1,0 +1,2 @@
+class Dmnotification < ApplicationRecord
+end
