@@ -31,6 +31,8 @@
           <% end %>
           </span>
         </p>
+    <% end %>
+    <% if user_signed_in? %>
       <% unless @user.id == current_user.id %>
         <% if (current_user.following? @user) && (@user.following? current_user)  %>
         <% if @isRoom == true %>
@@ -45,7 +47,7 @@
         <% end %>
         <% end %>
       <% end %>
-    <%  end %>
+    <% end %>
       </div>
     </div>
   </section>
