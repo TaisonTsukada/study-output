@@ -18,7 +18,7 @@
       <div class="row mb-3">
         <%= f.label :tag_list, "タグ", class: "col-sm-2 col-form-label" %>
         <div class="col-sm-10">
-          <%= f.text_field :tag_list,value: @article.tag_list.join(","), class:"form-control w-75" , placeholder: "タグは5個まで登録可能です""(タグは「,」で区切ってください)"%>
+          <%= text_field_tag 'article[tag_list]',@article.tag_list, class:"form-control w-75",data: {role: "tagsinput"}%>
         </div>
       </div>
       <div class="row mb-3">
