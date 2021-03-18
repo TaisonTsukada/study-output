@@ -6,8 +6,8 @@
         <i class="fas fa-user-check">フォロー中</i>
       <% end %>
       <p>
-        <%= link_to " #{@user.followings.count} フォロー", followings_user_path(@user.id), class: "mr-2 shadow-none text-decoration-none", style: "color: black;" %>
-        <%= link_to " #{@user.followers.count} フォロワー", followers_user_path(@user.id), class: "ml-2 shadow-none text-decoration-none", style: "color: black;" %>
+        <%= link_to " #{user.followings.count} フォロー", followings_user_path(user.id), class: "mr-2 shadow-none text-decoration-none", style: "color: black;" %>
+        <%= link_to " #{user.followers.count} フォロワー", followers_user_path(user.id), class: "ml-2 shadow-none text-decoration-none", style: "color: black;" %>
       </p>
     <% end %>
   <% else %>
@@ -17,9 +17,17 @@
           <i class="fas fa-user-plus">フォロー</i>
         <% end %>
         <p>
-          <%= link_to " #{@user.followings.count} フォロー", followings_user_path(@user.id), class: "mr-2 shadow-none text-decoration-none", style: "color: black;" %>
-          <%= link_to " #{@user.followers.count} フォロワー", followers_user_path(@user.id), class: "ml-2 shadow-none text-decoration-none", style: "color: black;" %>
+          <%= link_to " #{user.followings.count} フォロー", followings_user_path(user.id), class: "mr-2 shadow-none text-decoration-none", style: "color: black;" %>
+          <%= link_to " #{user.followers.count} フォロワー", followers_user_path(user.id), class: "ml-2 shadow-none text-decoration-none", style: "color: black;" %>
         </p>
     <% end %>
   <% end %>
 <% end %>
+<% if user == current_user %>
+  <p>
+    <%= link_to " #{user.followings.count} フォロー", followings_user_path(user.id), class: "mr-2 shadow-none text-decoration-none", style: "color: black;" %>
+    <%= link_to " #{user.followers.count} フォロワー", followers_user_path(user.id), class: "ml-2 shadow-none text-decoration-none", style: "color: black;" %>
+  </p>
+<%end%>
+
+

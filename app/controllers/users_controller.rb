@@ -14,7 +14,6 @@ class UsersController < ApplicationController
     end
 
     if user_signed_in?
-
       @currentUserEntry = Entry.where(user_id: current_user.id)
       @userEntry = Entry.where(user_id: @user.id)
       unless @user.id == current_user.id
@@ -26,8 +25,7 @@ class UsersController < ApplicationController
             end
           end
         end
-        if @isRoom
-        else
+        unless @isRoom
           @room = Room.new
           @entry = Entry.new
         end
