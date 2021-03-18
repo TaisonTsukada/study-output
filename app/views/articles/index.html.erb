@@ -1,7 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid h-100">
   <div class="row h-100">
     <%= render partial: "sidebar" %>
-    <main class="ml-20em col-9 ms-auto">
+    <main class="ml-20em col-9 ms-auto h-100">
       <nav class="navbar navbar-expand-lg navbar-light bg-light my-2">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -23,8 +23,8 @@
           </div>
         </div>
       </nav>
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ml-20em mt-20em">
+        <div class="container h-100">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ml-20em mt-20em h-100">
             <%= render partial: 'article', collection: @articles%> <%#検索機能を@resultsにしないと検索はできない%>
           </div>
           <div class= "ml-4 pagination">
