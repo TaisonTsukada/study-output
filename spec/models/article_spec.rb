@@ -13,29 +13,29 @@ RSpec.describe Article, type: :model do
     end
     context '投稿した記事が保存できないとき' do
       it 'titileが入力されていないと投稿できない' do
-        @article.title = ""
+        @article.title = ''
         @article.valid?
-        expect(@article.errors.full_messages). to include("タイトルを入力してください")
+        expect(@article.errors.full_messages).to include('タイトルを入力してください')
       end
       it 'titleが26文字以上だと投稿できない' do
-        @article.title= "a"*26
+        @article.title = 'a' * 26
         @article.valid?
-        expect(@article.errors.full_messages).to include("タイトルは25文字以内で入力してください")
+        expect(@article.errors.full_messages).to include('タイトルは25文字以内で入力してください')
       end
       it 'タグ名が入力されていないと投稿できない' do
         @article.tag_list = []
         @article.valid?
-        expect(@article.errors.full_messages).to include("タグを入力してください")
+        expect(@article.errors.full_messages).to include('タグを入力してください')
       end
-      it  'タグ5個以上だと投稿できない' do
-        @article.tag_list = ["世界史","数学","英語","国語", "化学", "物理"]
+      it 'タグ5個以上だと投稿できない' do
+        @article.tag_list = %w[世界史 数学 英語 国語 化学 物理]
         @article.valid?
-        expect(@article.errors.full_messages).to include("タグは５個までです")
+        expect(@article.errors.full_messages).to include('タグは５個までです')
       end
       it 'contentが入力されていないと投稿できない' do
-        @article.content=nil
+        @article.content = nil
         @article.valid?
-        expect(@article.errors.full_messages).to include("記事本文を入力してください")
+        expect(@article.errors.full_messages).to include('記事本文を入力してください')
       end
     end
   end

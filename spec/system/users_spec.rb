@@ -4,7 +4,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
   before do
     @user = FactoryBot.build(:user)
   end
-  context 'ユーザー新規登録ができるとき' do 
+  context 'ユーザー新規登録ができるとき' do
     it '正しい情報を入力すればユーザー新規登録ができてトップページに移動する' do
       # トップページに移動する
       visit root_path
@@ -19,12 +19,12 @@ RSpec.describe 'ユーザー新規登録', type: :system do
       fill_in 'パスワードの確認', with: @user.password_confirmation
       # サインアップボタンを押すとユーザーモデルのカウントが1上がることを確認する
       expect do
-        click_button "新規登録する"
+        click_button '新規登録する'
       end.to change(User, :count).by(1)
       # トップページへ遷移したことを確認する
       expect(current_path).to eq(root_path)
       # ユーザーアイコンを押すとログアウトリンクが表示されることを確認する
-      find("#dropdownMenuButton").click
+      find('#dropdownMenuButton').click
       page.find_link('ログアウト').text
       # サインアップページへ遷移するボタンや、ログインページへ遷移するボタンが表示されていないことを確認する
       expect(page).to have_no_content('新規登録')
@@ -46,7 +46,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
       fill_in 'パスワードの確認', with: ''
       # サインアップボタンを押してもユーザーモデルのカウントは上がらないことを確認する
       expect do
-        click_button "新規登録する"
+        click_button '新規登録する'
       end.to change(User, :count).by(0)
       # 新規登録ページへ戻されることを確認する
       expect(current_path).to eq('/users')
@@ -70,11 +70,11 @@ RSpec.describe 'ログイン', type: :system do
       fill_in 'Eメール', with: @user.email
       fill_in 'パスワード', with: @user.password
       # ログインボタンを押す
-      click_button "Log in"
+      click_button 'Log in'
       # トップページへ遷移することを確認する
       expect(current_path).to eq(root_path)
       # カーソルを合わせるとログアウトボタンが表示されることを確認する
-      find("#dropdownMenuButton").click
+      find('#dropdownMenuButton').click
       page.find_link('ログアウト').text
       # サインアップページへ遷移するボタンやログインページへ遷移するボタンが表示されていないことを確認する
       expect(page).to have_no_content('新規登録')

@@ -1,5 +1,4 @@
 module RoomsHelper
-
   def most_new_message_preview(room)
     # 最新メッセージのデータを取得する
     message = room.messages.order(updated_at: :desc).limit(1)
@@ -8,10 +7,10 @@ module RoomsHelper
     # メッセージの有無を判定
     if message.present?
       # メッセージがあれば内容を表示
-      tag.p "#{message.message}", class: "dm_list__content__link__box__message"
+      tag.p message.message.to_s, class: 'dm_list__content__link__box__message'
     else
       # メッセージがなければ[ まだメッセージはありません ]を表示
-      tag.p "[ まだメッセージはありません ]", class: "dm_list__content__link__box__message"
+      tag.p '[ まだメッセージはありません ]', class: 'dm_list__content__link__box__message'
     end
   end
 
@@ -22,7 +21,7 @@ module RoomsHelper
     # 相手ユーザーの名前を取得
     name = entry[0].user.nickname
     # 名前を表示
-    tag.p "#{name}", class: "dm_list__content__link__box__name"
+    tag.p name.to_s, class: 'dm_list__content__link__box__name'
   end
 
   def opponent_user_span(room)
@@ -31,7 +30,6 @@ module RoomsHelper
     # 相手ユーザーの名前を取得
     name = entry[0].user.nickname
     # 名前を表示
-    tag.span "#{name}", class: "dm_list__content__link__box__name"
+    tag.span name.to_s, class: 'dm_list__content__link__box__name'
   end
 end
-

@@ -12,22 +12,18 @@ class Article < ApplicationRecord
   is_impressionable counter_cache: true
 
   with_options presence: true do
-    validates :title, length: {maximum: 25}
+    validates :title, length: { maximum: 25 }
     validates :user_id
     validates :content
     validates :tag_list
   end
-  validate  :tag_list_tag_validation
+  validate :tag_list_tag_validation
 
   def tag_list_tag_validation
-    tag_validation = tag_list #validatesの時と違って、:tag_listとしないところを注意
-    tag_validation.split(",")
-    if tag_validation.length < 1
-      errors.add(:tag_list, "を入力してください")
-    end
-    if tag_validation.length >5
-      errors.add(:tag_list, "は５個までです")
-    end
+    tag_validation = tag_list # validatesの時と違って、:tag_listとしないところを注意
+    tag_validation.split(',')
+    errors.add(:tag_list, 'を入力してください') if tag_validation.length < 1
+    errors.add(:tag_list, 'は５個までです') if tag_validation.length > 5
   end
 
   # 通知機能のメソッド↓

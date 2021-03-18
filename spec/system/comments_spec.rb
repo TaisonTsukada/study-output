@@ -10,14 +10,14 @@ RSpec.describe 'コメント投稿', type: :system do
     visit new_user_session_path
     fill_in 'Eメール', with: @article.user.email
     fill_in 'パスワード', with: @article.user.password
-    click_button "Log in"
+    click_button 'Log in'
     expect(current_path).to eq(root_path)
     # ツイート詳細ページに遷移する
     visit article_path(@article.id)
     # フォームに情報を入力する
     fill_in 'comment_text', with: @comment
     # コメントを送信すると、コメント欄にコメントが含まれている
-      click_button "コメントをする"
-      expect(page).to have_content @comment
+    click_button 'コメントをする'
+    expect(page).to have_content @comment
   end
 end

@@ -1,7 +1,13 @@
 
 <div class="mesgs">
 <div class="message_header ">
-  <p><%= opponent_user_span(@room)%>さん</p>
+  <%= link_to user_path(@user.id) do %>
+    <% if @user.avatar.attached? %>
+      <p><%= image_tag(rails_blob_path(@user.avatar),:size => "30x30", class: "img-circle") %><%= @user.nickname %>さん</p>
+    <% else %>
+      <p><%= image_tag("default_user.png", :size => "40x40", class: "img-circle pl-1em") %><%= @user.nickname %>さん</p>
+    <% end %>
+  <% end %>
 </div>
   <div class="msg_history">
   <div id= "messages">

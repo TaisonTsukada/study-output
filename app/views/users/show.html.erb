@@ -13,10 +13,7 @@
           <%= render 'shared/follow',user: @user %>
         </div>
       <% end %>
-        <p>
-          <%= link_to " #{@user.followings.count} フォロー", followings_user_path(@user.id), class: "mr-2 shadow-none text-decoration-none", style: "color: black;" %>
-          <%= link_to " #{@user.followers.count} フォロワー", followers_user_path(@user.id), class: "ml-2 shadow-none text-decoration-none", style: "color: black;" %>
-        </p>
+        
       <% if user_signed_in? &&current_user.id == @user.id %>
         <p>
           <span class= "mr-4">
@@ -34,7 +31,6 @@
     <% end %>
     <% if user_signed_in? %>
       <% unless @user.id == current_user.id %>
-        <% if (current_user.following? @user) && (@user.following? current_user)  %>
         <% if @isRoom == true %>
           <%= link_to room_path(@roomId), class: "create-btn user-show-room" do %>
             <button type="button" class="create-btn"><i class="fas fa-envelope"></i>メッセージ</button>
@@ -45,10 +41,9 @@
               <%= e.hidden_field :user_id, value: @user.id %>
             <% end %>
             <%= button_tag type: 'submit', class: "create-btn user-show-room" do %>
-              <i class="fas fa-envelope">メッセージ</i>
+              <i class="fas fa-envelope">始める</i>
             <% end %>
           <% end %>
-        <% end %>
         <% end %>
       <% end %>
     <% end %>
