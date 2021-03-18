@@ -1,7 +1,7 @@
         <div class="inbox_people">
           <div class="headind_srch">
             <div class="recent_heading">
-              <h4>メッセージ</h4>
+              <h4 style="font-weight: bold;">メッセージ</h4>
             </div>
             <div class="srch_bar">
               <div class="stylish-input-group">
@@ -16,6 +16,7 @@
           <% entry = room.entries.where.not(user_id: current_user) %>
           <% user = entry[0].user%>
             <%= link_to room_path(room) do %>
+            
             <div class="chat_list">
               <div class="chat_people">
                 <div class="chat_img"> 

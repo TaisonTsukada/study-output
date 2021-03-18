@@ -36,13 +36,17 @@
       <% unless @user.id == current_user.id %>
         <% if (current_user.following? @user) && (@user.following? current_user)  %>
         <% if @isRoom == true %>
-          <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
+          <%= link_to room_path(@roomId), class: "create-btn user-show-room" do %>
+            <button type="button" class="create-btn"><i class="fas fa-envelope"></i>メッセージ</button>
+          <% end %>
         <% else %>
           <%= form_for @room do |f| %>
             <%= fields_for @entry do |e| %>
               <%= e.hidden_field :user_id, value: @user.id %>
             <% end %>
-            <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
+            <%= button_tag type: 'submit', class: "create-btn user-show-room" do %>
+              <i class="fas fa-envelope">メッセージ</i>
+            <% end %>
           <% end %>
         <% end %>
         <% end %>
