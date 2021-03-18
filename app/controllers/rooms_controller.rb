@@ -1,12 +1,10 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  
 
   def index
-    @rooms = current_user.rooms.joins(:messages).includes(:messages).order("messages.created_at DESC")
+    @rooms = current_user.rooms.joins(:messages).includes(:messages).order('messages.created_at DESC')
   end
 
-  
   def create
     @room = Room.create
     @entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
@@ -15,9 +13,9 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @rooms = current_user.rooms.joins(:messages).includes(:messages).order("messages.created_at DESC")
+    @rooms = current_user.rooms.joins(:messages).includes(:messages).order('messages.created_at DESC')
     @room = Room.find(params[:id])
-    if Entry.where(user_id: current_user.id,room_id: @room.id).present?
+    if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @messages = @room.messages
       @message = Message.new
       @entries = @room.entries
@@ -32,7 +30,7 @@ class RoomsController < ApplicationController
   end
 
   private
+
   def false_to_true
-    
   end
 end

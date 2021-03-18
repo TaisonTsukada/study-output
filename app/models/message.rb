@@ -3,5 +3,5 @@ class Message < ApplicationRecord
   belongs_to :room
   has_many :dmnotifications, dependent: :destroy
 
-  validates :message, presence:true
+  validates :message, presence: true
 end
