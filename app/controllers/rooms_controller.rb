@@ -19,7 +19,8 @@ class RoomsController < ApplicationController
       @messages = @room.messages
       @message = Message.new
       @entries = @room.entries
-
+      entry = @room.entries.where.not(user_id: current_user)
+      @user = entry[0].user
       @dmnotifications = current_user.passive_dmnotifications
       @dmnotifications.where(checked: false).each do |dmnotification|
         dmnotification.update_attributes(checked: true)
@@ -29,8 +30,5 @@ class RoomsController < ApplicationController
     end
   end
 
-  private
 
-  def false_to_true
-  end
 end
