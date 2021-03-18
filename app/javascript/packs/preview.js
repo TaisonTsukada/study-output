@@ -1,4 +1,4 @@
-if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
+if (document.URL.match( /new/ ) || document.URL.match( /edit/ ) || document.URL.match( /sign_up/ )) {
   document.addEventListener('DOMContentLoaded', function(){
     const ImageList = document.getElementById('image-list');
 
@@ -17,7 +17,20 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
       ImageList.appendChild(imageElement);
 
     };
-
+    if (document.URL.match(/sign_up/)) {
+      document.getElementById('user_avatar').addEventListener('change', function(e){
+        // 画像が表示されている場合のみ、すでに存在している画像を削除する
+        const imageContent = document.querySelector('img');
+        if (imageContent){
+          imageContent.remove();
+        }
+  
+        const file = e.target.files[0];
+        const blob = window.URL.createObjectURL(file);
+  
+        createImageHTML(blob);
+      });
+    }else{
     document.getElementById('article_image').addEventListener('change', function(e){
       // 画像が表示されている場合のみ、すでに存在している画像を削除する
       const imageContent = document.querySelector('img');
@@ -30,5 +43,6 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
 
       createImageHTML(blob);
     });
+  }
   });
 }
