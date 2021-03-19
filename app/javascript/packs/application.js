@@ -3,10 +3,9 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+
 import 'bootstrap';
 import '../stylesheets/application';
-import Vue from 'vue';
-import App from '../app.vue';
 
 require("@rails/ujs").start()
 // require("turbolinks").start() //
@@ -15,15 +14,6 @@ require("channels")
 require('./preview')
 require("trix")
 require("@rails/actiontext")
-
-document.addEventListener('DOMContentLoaded', () => {
-  const app = new Vue({
-    render: h => h(App)
-  }).$mount()
-  document.body.appendChild(app.$el)
-
-  console.log(app)
-})
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
