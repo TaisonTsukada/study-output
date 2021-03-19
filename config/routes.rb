@@ -18,8 +18,11 @@ Rails.application.routes.draw do
     get :followers, on: :member
   end
   resources :relationships, only: [:create, :destroy]
-  resources :messages, only: [:create]
-  resources :rooms, only: [:index, :create,:show]
+  namespace :api do
+    resources :messages, only: [:create]
+    resources :rooms, only: [:index, :create,:show]
+  end
+
 
   resources :notifications, only: :index
   resources :activities, only: :index
