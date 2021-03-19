@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'dmnotifications/index'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
       }
