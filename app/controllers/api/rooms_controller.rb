@@ -1,4 +1,4 @@
-class RoomsController < ApplicationController
+class Api::RoomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
