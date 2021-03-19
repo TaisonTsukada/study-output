@@ -5,16 +5,13 @@
 </template>
 
 <script>
-import Following from './components/Following';
 export default {
   data: function() {
     return {
       message: "Hello Vue!"
     };
   },
-  components: {
-    Following
-  }
+
 };
 </script>
 
