@@ -11,8 +11,10 @@
             <%= active_link_to articles_path(option: "new"), active: { option: "new"}, class: "nav-item nav-link" do %>
               <i class="fas fa-sort-numeric-down">新着記事</i>
             <% end %>
+            <% if user_signed_in? %>
             <%= active_link_to articles_path(option: "timeline"),active: { option: 'timeline' }, class: "nav-item nav-link " do %>
               <i class="fas fa-users">タイムライン</i>
+            <% end %>
             <% end %>
             <%= active_link_to articles_path(option: "likes"),active: { option: 'likes' }, class: "nav-item nav-link " do %>
               <i class="fas fa-heart">いいねの多い記事</i>
