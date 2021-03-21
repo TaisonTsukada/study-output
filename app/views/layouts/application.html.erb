@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>StudyOutput</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <title>Study Outoput</title>
+    <%= favicon_link_tag('favicon.ico') %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700,900&display=swap" rel="stylesheet">
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -32,7 +32,7 @@
         </li>
       <% if user_signed_in? %>
         <li class= "header-list mr-1">
-          <%= link_to  rooms_path do %>
+          <%= link_to rooms_path do %>
             <% if unchecked_dmnotifications.any? %>
               <span class="fa-stack">
                 <i class="fas fa-envelope fa-stack-2x"></i>
