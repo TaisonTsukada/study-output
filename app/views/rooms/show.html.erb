@@ -8,7 +8,7 @@
               <%= form_with model: @message do |f| %>
               <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 70, class:"write_msg" %>
               <%= f.hidden_field :room_id, value: @room.id %>
-              <%= button_tag type: 'submit', class: "msg_send_btn" do %>
+              <%= button_tag type: 'submit', class: "msg_send_btn"  do %>
                 <i class="fas fa-paper-plane"></i>
               <% end %>
               <% end %>

@@ -9,7 +9,9 @@
         <%= devise_error_messages!%>
         <div class='field'>
           <div class='field-label'>
-            <%= f.label :nickname, "ニックネーム"%>
+            <%= f.label :nickname do %>
+              <span class="badge badge-danger mr-1">必須</span>ニックネーム
+            <% end %>
           </div>
           <div class='field-input'>
             <%= f.text_field :nickname, autofocus: true, class: "form-control"%>
@@ -17,7 +19,9 @@
         </div>
         <div class='field'>
           <div class='field-label'>
-            <%= f.label :email, "Eメール"%>
+            <%= f.label :email do %>
+              <span class="badge badge-danger mr-1">必須</span>Eメール
+            <% end %>
           </div>
           <div class='field-input'>
             <%= f.email_field :email, class: "form-control", placeholder: "name@example.com" %>
@@ -25,7 +29,9 @@
         </div>
         <div class='field'>
           <div class='field-label'>
-            <%= f.label :password, "パスワード"%>
+            <%= f.label :password do %>
+              <span class="badge badge-danger mr-1">必須</span>パスワード
+            <% end %>
             <i>(英数字6文字以上)</i>
           </div>
           <div class='field-input'>
@@ -34,7 +40,9 @@
         </div>
         <div class='field'>
           <div class='field-label'>
-            <%= f.label :password_confirmation, "パスワードの確認"%>
+            <%= f.label :password_confirmation do %>
+              <span class="badge badge-danger mr-1">必須</span>パスワードの確認
+            <% end %>
           </div>
           <div class='field-input'>
             <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control"%>

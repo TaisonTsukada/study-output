@@ -31,7 +31,12 @@
                 <%= link_to "#{tag.name}(#{tag.taggings_count})",articles_path(tag: tag.name), class: "side-tag text-decoration-none "%>
             <% end %>
           </div>
-          <p><%= @article.content%></p>
+          <div>
+            <%= @article.content%>
+          <%if @article.youtube_url.present? %>
+            <iframe class= "my-5" width="560" height="315" src="https://www.youtube.com/embed/<%= @article.youtube_url[32..42]%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <%end%>
+          </div>
         <% if user_signed_in? %>
           <% if current_user.id == @article.user.id %>
           <div class="d-flex justify-content-sm-between">
