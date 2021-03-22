@@ -31,6 +31,8 @@ http://52.198.51.125/
 
 
 # テーブル設計
+## ER図
+![study-output-er](https://user-images.githubusercontent.com/78004609/111937975-4ea16300-8b0c-11eb-9499-2ab607b622a3.png)
 
 ## usersテーブル
 
