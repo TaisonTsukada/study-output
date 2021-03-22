@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :move_to_index, only: [:edit, :update]
 
   def index
-    @tags = Article.tag_counts_on(:tags).order('count DESC')
+    @tags = Article.tag_counts_on(:tags).order('count DESC').limit(15)
     if params[:option] == 'views'
       @articles = Article.includes(:user, :likes, :tags).order(impressions_count: 'DESC').page(params[:page]).per(9)
     elsif params[:option] == 'likes'
@@ -45,8 +45,8 @@ class ArticlesController < ApplicationController
     @comments = @article.comments
     impressionist(@article, nil, unique: [:ip_address])
     tag_list = @article.tag_list
-    @articles = Article.tagged_with(tag_list).where.not(id: @article.id).limit(5)
-    @articles = Article.order('RAND()').where.not(id: @article.id).limit(5) if @articles.blank?
+    @articles = Article.tagged_with(tag_list).where.not(id: @article.id).limit(3)
+    @articles = Article.order('RAND()').where.not(id: @article.id).limit(3) if @articles.blank?
   end
 
   def destroy
