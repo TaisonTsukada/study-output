@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
       article_like_count = Article.joins(:likes).group(:article_id).count
       article_liked_ids = Hash[article_like_count.sort_by { |_, v| -v }].keys
       @articles = Article.includes(:user, :likes,
-                                   :tags).where(id: article_liked_ids).order(created_at: :desc).page(params[:page]).per(9)
+                                  :tags).where(id: article_liked_ids).order(created_at: :desc).page(params[:page]).per(9)
     elsif params[:option] == 'timeline'
       @articles = Article.where(user_id: [*current_user.following_ids]).order(created_at: :desc).page(params[:page]).per(9)
     elsif @q_header
@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
     end
     if @tag = params[:tag]
       @articles = Article.tagged_with(params[:tag]).includes(:user,
-                                                             :likes).order(created_at: :desc).page(params[:page]).per(9)
+                                                            :likes).order(created_at: :desc).page(params[:page]).per(9)
     end
 
     @notifications = current_user.passive_notifications.page(params[:page]).per(5) if user_signed_in?
