@@ -8,10 +8,12 @@ class ArticlesController < ApplicationController
     if params[:option] == 'views'
       @articles = Article.includes(:user, :likes, :tags).order(impressions_count: 'DESC').page(params[:page]).per(9)
     elsif params[:option] == 'likes'
-      article_like_count = Article.joins(:likes).group(:article_id).count
-      article_liked_ids = Hash[article_like_count.sort_by { |_, v| -v }].keys
-      @articles = Article.includes(:user, :likes,
-                                   :tags).where(id: article_liked_ids).order(created_at: :desc).page(params[:page]).per(9)
+      articles_array= Article.includes(:liked_users, :user, :tags).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+      @articles = Kaminari.paginate_array(articles_array).page(params[:page]).per(10)
+      #article_like_count = Article.joins(:likes).group(:article_id).count
+      #article_liked_ids = Hash[article_like_count.sort_by { |_, v| -v }].keys
+      #@articles = Article.includes(:user, :likes,
+                                   #:tags).where(id: article_liked_ids).order(created_at: :desc).page(params[:page]).per(9)
     elsif params[:option] == 'timeline'
       @articles = Article.where(user_id: [*current_user.following_ids]).order(created_at: :desc).page(params[:page]).per(9)
     elsif @q_header
