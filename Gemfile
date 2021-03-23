@@ -79,3 +79,4 @@ gem "gretel"
 gem "aws-sdk-s3", require: false
 gem 'active_link_to'
 gem 'active_model_serializers'
+gem 'rack-cors'
