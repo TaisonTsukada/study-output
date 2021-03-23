@@ -41,7 +41,16 @@ h2 {
 .img-circle {
   border-radius: 50%;
   background-position: left top;
-  border: 3px solid #00cc00;
+  margin-right: 5px;
+}
+.img-circle.header-image{
+  border: 3px solid #005254;
+}
+.img-circle.header-image:hover{
+  opacity: 0.8;
+}
+.header-icon:hover{
+  opacity: 0.8;
 }
 
 dl.searchbox{

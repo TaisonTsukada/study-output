@@ -22,10 +22,9 @@
                 <div class="chat_ib">
                   <h5>
                     <%=user.nickname%>
-                    <span class="chat_date "><%= time_ago_in_words(room.created_at) %></span>
-                  <% if unchecked_dmnotifications.any? %>
-                    <span><i class="fa fa-circle n-circle"></i></span>
-                  <% end %>
+                    <span class="chat_date "><%= message_time(room) %>前</span>
+                  <%# if unchecked_dmnotifications.any? %>
+                  <%# end %>
                   </h5>
                   <p><%= most_new_message_preview(room) %></p>
                 </div>

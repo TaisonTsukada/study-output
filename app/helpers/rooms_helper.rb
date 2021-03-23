@@ -13,6 +13,12 @@ module RoomsHelper
       tag.p '[ まだメッセージはありません ]', class: 'dm_list__content__link__box__message'
     end
   end
+  
+  def message_time(room)
+    message = room.messages.order(updated_at: :desc).limit(1)
+    message = message[0]
+    time_ago_in_words(message.created_at.to_s)
+  end
 
   # 相手ユーザー名を取得して表示するメソッド
   def opponent_user(room)
