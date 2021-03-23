@@ -20,10 +20,9 @@ RSpec.describe 'メッセージ投稿機能', type: :system do
       # DBに保存されていないことを確認する
       expect do
         find('.msg_send_btn').click
-      end.not_to change {Message.count}
+      end.not_to change { Message.count }
       # 元のページに戻ってくることを確認する
       expect(current_path).to eq(room_path(@room.id))
-
     end
   end
   context '投稿に成功したとき' do
@@ -36,18 +35,16 @@ RSpec.describe 'メッセージ投稿機能', type: :system do
       post = 'テスト'
       fill_in 'message_message', with: post
       # 送信した値がDBに保存されていることを確認する
-      expect {
+      expect do
         find('.msg_send_btn').click
         visit room_path(@room.id)
-      }.to change { Message.count }.by(1)
+      end.to change { Message.count }.by(1)
 
       # 投稿一覧画面に遷移していることを確認する
       expect(current_path).to eq(room_path(@room))
 
       # 送信した値がブラウザに表示されていることを確認する
       expect(page).to have_content(post)
-
     end
-
   end
 end
