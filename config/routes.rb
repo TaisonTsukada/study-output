@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   
   post 'like/:id' => 'likes#create', as: 'create_like'
   delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
+
   resources :users, only: [:show] do
     get :followings, on: :member
     get :followers, on: :member
@@ -28,4 +29,5 @@ Rails.application.routes.draw do
   resources :activities, only: :index
 
   resources :stocks, only: [:index, :create, :destroy]
+  mount ActionCable.server => '/cable'
 end

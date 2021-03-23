@@ -64,10 +64,28 @@
             </div>
             <div>
               <small class="text-muted"><%= time_ago_in_words(@article.created_at) %>前に作成</small>
-            <div>
+            </div>
           </div>
           <% end %>
         <% end %>
+          <div class="d-flex align-items-center mt-2 mr-4">
+            <div>
+              <%= link_to "https://twitter.com/share?url=#{request.url}", title: 'Twitter', target: '_blank' do %>
+                <i class="fab fa-twitter-square fa-2x " style='color: #3399FF;'></i>
+              <% end %>
+            </div>
+            <div class="ml-2">
+              <div class="fb-share-button  " data-href="<%= request.url %>" data-layout="button" data-size="large">
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= request.url %>&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a>
+              </div>
+              <div id="fb-root"></div>
+              <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v10.0" nonce="WsBK5jfP"></script>
+            </div>
+            <div class="ml-2 mt-2">
+              <div class="line-it-button" data-lang="ja" data-type="share-b" data-ver="3" data-url="https://social-plugins.line.me/ja/how_to_install#lineitbutton" data-color="default" data-size="small" data-count="false" style="display: none;"></div>
+              <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+            </div>
+          </div>
         </div>
       </div>
       <hr>
