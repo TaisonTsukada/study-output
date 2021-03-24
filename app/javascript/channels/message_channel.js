@@ -25,8 +25,7 @@ consumer.subscriptions.create("MessageChannel", {
     const newMessage = document.getElementById('message_message');
     messages.insertAdjacentHTML('beforeend', html);
     newMessage.value='';
-    const obj = document.getElementById("messages");
-    obj.scrollTop = obj.scrollHeight;
+    messages.scrollTop = messages.scrollHeight;
     }
     else{
       const html =
