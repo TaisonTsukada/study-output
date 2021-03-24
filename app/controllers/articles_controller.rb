@@ -32,8 +32,9 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to root_path
+      redirect_to root_path, notice: '投稿が完了しました'
     else
+      flash.now[:alert] = '投稿内容を正しく入力してください'
       render 'new'
     end
   end
@@ -50,7 +51,7 @@ class ArticlesController < ApplicationController
   def destroy
     if current_user.id == @article.user.id
       @article.destroy
-      redirect_to root_path
+      redirect_to root_path, notice: '投稿を削除しました'
     end
   end
 
@@ -59,8 +60,9 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      redirect_to article_path
+      redirect_to article_path, notice: '投稿を編集をしました'
     else
+      flash.now[:alert] = '投稿内容を正しく入力してください'
       render :edit
     end
   end
