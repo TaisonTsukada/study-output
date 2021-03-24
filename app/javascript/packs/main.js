@@ -1,14 +1,12 @@
 import Vue from "vue";
-import Vuetify from "vuetify";
-import "vuetify/dist/vuetify.min.css"; 
+import ActionCable from 'actioncable';
 import App from "../app.vue";
 
-Vue.use(Vuetify); // 追加
-const vuetify = new Vuetify(); // 追加
+const cable = ActionCable.createConsumer('ws:hoge.com:3000/cable');
+Vue.prototype.$cable = cable;
 
 document.addEventListener("DOMContentLoaded", () => {
   const app = new Vue({
-    vuetify,
     render: h => h(App)
   }).$mount();
   document.body.appendChild(app.$el);

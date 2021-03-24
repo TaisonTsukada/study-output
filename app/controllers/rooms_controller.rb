@@ -7,6 +7,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.create
+    
     @entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
     @entry2 = Entry.create(params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id))
     redirect_to "/rooms/#{@room.id}"
@@ -21,6 +22,12 @@ class RoomsController < ApplicationController
       @entries = @room.entries
       entry = @room.entries.where.not(user_id: current_user)
       @user = entry[0].user
+      #dmnotifications = current_user.passive_dmnotifications
+      #@dmnotification = dmnotifications.where(room_id: @room_id, visited_id: current_user.id)
+      #if @dmnotification.any?
+        #@dmnotification.update_attributes(checked: true)
+      #end
+      
       @dmnotifications = current_user.passive_dmnotifications
       @dmnotifications.where(checked: false).each do |dmnotification|
         dmnotification.update_attributes(checked: true)
@@ -29,6 +36,4 @@ class RoomsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
-
-
 end

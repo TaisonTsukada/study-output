@@ -39,19 +39,19 @@
                 <i class="fa fa-circle fa-stack-1x n-circle"></i>
               </span>
             <% else %>
-              <i class="fas fa-envelope fa-2x"></i>
+              <i class="fas fa-envelope fa-2x header-icon"></i>
             <% end %>
           <% end %>
         </li>
         <li class= "header-list">
           <%= link_to  notifications_path do %>
             <% if unchecked_notifications.any? %>
-              <span class="fa-stack">
-                <i class="fas fa-bell fa-stack-2x "></i>
-                <i class="fa fa-circle fa-stack-1x n-circle"></i>
+              <span class="fa-stack header-icon">
+                <i class="fas fa-bell fa-stack-2x header-icon"></i>
+                <i class="fa fa-circle fa-stack-1x n-circle header-icon"></i>
               </span>
             <% else %>
-              <i class="fas fa-bell fa-2x"></i>
+              <i class="fas fa-bell fa-2x header-icon"></i>
             <% end %>
           <% end %>
         </li>
@@ -60,7 +60,7 @@
                 <% if current_user.avatar.attached? %>
                   <p><%= image_tag(rails_blob_path(current_user.avatar), size: "50x50", class: "img-circle", id: "avatar") %></p>
                 <% else %>
-                  <p><%= image_tag("default_user.png", size: "50x50", class: "img-circle", id: "avatar") %></p>
+                  <p><%= image_tag("default_user.png", size: "50x50", class: "img-circle header-image", id: "avatar") %></p>
                 <% end %> 
               </button>
               <div class="dropdown-menu dropdown-menu-right btn-sm">
@@ -94,6 +94,11 @@
         </li>
       <% end %>
       </ul>
+    </div>
+    <div class ="notifications">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: key) %>
+      <% end %>
     </div>
     <%= breadcrumbs separator: " &rsaquo; " %>  
     <%= yield %>
