@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
     @rooms = current_user.rooms.joins(:messages).includes(:messages).order('messages.created_at DESC')
     @room = Room.find(params[:id])
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
-      @messages = @room.messages.page(params[:page]).per(1)
+      @messages = @room.messages
       @message = Message.new
       @entries = @room.entries
       entry = @room.entries.where.not(user_id: current_user)
