@@ -11,6 +11,8 @@
               <%= button_tag type: 'submit', class: "msg_send_btn"  do %>
                 <i class="fas fa-paper-plane"></i>
               <% end %>
+              <input id="current_user_id" type="hidden" value= "<%=current_user.id%>">
+              <input id="partner_id" type="hidden" value= "<%=@user.id%>">
               <% end %>
             </div>
           </div>
