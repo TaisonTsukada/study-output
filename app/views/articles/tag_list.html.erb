@@ -34,7 +34,7 @@
         <% if @tags.present? %>
           <div class="row mt-4" id="tags-list">
               <%= render partial: 'tags', collection: @tags %>
-              <%= link_to_next_page @tags, 'もっと見る', id: 'more-tags', class: 'btn btn-light w-100', params: { type: :tags }, remote: true %>
+              <%= link_to_next_page @tags, 'もっと見る', id: 'more-tags', class: 'btn btn-light w-100',style: "font-weight: bold;", params: { type: :tags }, remote: true %>
           </div>
         <% end %>
         </div>
