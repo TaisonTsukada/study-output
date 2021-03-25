@@ -68,7 +68,7 @@ class ArticlesController < ApplicationController
   end
 
   def tag_list
-    @tags = Article.tag_counts_on(:tags).order('count DESC').page(params[:page]).per(21)
+    @tags = Article.tag_counts_on(:tags).order('count DESC').page(params[:page]).per(18)
     return unless request.xhr?
 
     case params[:type]

@@ -22,13 +22,15 @@
             <%= active_link_to  articles_path(option: "views"),active: { option: 'views' }, class: "nav-item nav-link " do %>
               <i class="fas fa-chart-line">閲覧数の多い記事</i>
             <% end %>
+            <% if @tags.length >= 15 %>
             <%= active_link_to tag_list_articles_path, class: "nav-item nav-link " do %>
               <i class="fas fa-tags">全てのタグ</i>
+            <% end %>
             <% end %>
           </div>
         </div>
       </nav>
-        <div class="container h-100">
+        <div class="container h-100 mb-2">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ml-20em mt-20em h-100">
             <%= render partial: 'article', collection: @articles%> <%#検索機能を@resultsにしないと検索はできない%>
           </div>
