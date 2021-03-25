@@ -21,7 +21,6 @@ class ArticlesController < ApplicationController
       @articles = Article.tagged_with(params[:tag]).includes(:user,
                                                              :likes).order(created_at: :desc).page(params[:page]).per(9)
     end
-
     @notifications = current_user.passive_notifications.page(params[:page]).per(5) if user_signed_in?
   end
 
@@ -44,8 +43,11 @@ class ArticlesController < ApplicationController
     @comments = @article.comments
     impressionist(@article, nil, unique: [:ip_address])
     tag_list = @article.tag_list
-    @articles = Article.tagged_with(tag_list).where.not(id: @article.id).limit(3)
-    @articles = Article.order('RAND()').where.not(id: @article.id).limit(3) if @articles.blank?
+    @articles =Article.tagged_with([tag_list], :any => true).where.not(id: @article.id).limit(3)
+
+    if @articles.blank? || @articles.length <= 2
+      @articles = Article.order('RAND()').where.not(id: @article.id).limit(3)
+    end
   end
 
   def destroy
