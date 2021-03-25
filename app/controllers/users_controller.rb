@@ -30,6 +30,12 @@ class UsersController < ApplicationController
         end
       end
     end
+
+    return unless request.xhr?
+    case params[:type]
+    when 'article'
+      render "users/#{params[:type]}"
+    end
   end
 
   def followings

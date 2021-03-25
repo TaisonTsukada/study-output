@@ -18,8 +18,8 @@ class ArticlesController < ApplicationController
       @articles = Article.includes(:user, :likes, :tags).order(created_at: :desc).page(params[:page]).per(9)
     end
     if @tag = params[:tag]
-      @articles = Article.tagged_with(params[:tag]).includes(:user,
-                                                             :likes).order(created_at: :desc).page(params[:page]).per(9)
+      @articles = Article.tagged_with(params[:tag]).includes( :user,
+                                                              :likes).order(created_at: :desc).page(params[:page]).per(9)
     end
     @notifications = current_user.passive_notifications.page(params[:page]).per(5) if user_signed_in?
   end
@@ -74,7 +74,7 @@ class ArticlesController < ApplicationController
     return unless request.xhr?
 
     case params[:type]
-    when 'tags'
+    when 'articles'
       render "articles/#{params[:type]}"
     end
   end
