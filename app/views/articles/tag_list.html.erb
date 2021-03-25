@@ -31,14 +31,12 @@
         <div class="pt-3">
         <h1 class="text-center" style="font-weight: bold;"><i class="fas fa-tags mt-1"></i>全てのタグ一覧</h1>
         </div>
-          <div class="row mt-4">
-            <% if @tags.present? %>
-            <div id="tags-list">
+        <% if @tags.present? %>
+          <div class="row mt-4" id="tags-list">
               <%= render partial: 'tags', collection: @tags %>
               <%= link_to_next_page @tags, 'もっと見る', id: 'more-tags', class: 'btn btn-light w-100', params: { type: :tags }, remote: true %>
-            </div>
-            <% end %>
           </div>
+        <% end %>
         </div>
     </main>
   </div>
