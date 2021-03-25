@@ -1,3 +1,3 @@
 $('#more-article').remove();
 $('#article-list').append("<%= j render partial: 'articles/article', collection: @articles %>")
-$('#article-list').append("<%= j link_to_next_page(@articles, 'もっと見る', id: 'more-article', class: 'btn btn-light w-100', params: { type: :articles }, remote: true) %>")
+$('#article-list').append("<%= j link_to_next_page(@articles, 'もっと見る', id: 'more-article', class: 'btn btn-light w-100', params: { type: :article }, remote: true) %>")

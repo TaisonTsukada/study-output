@@ -71,9 +71,6 @@
         <%= render partial: "articles/article",collection: @articles %>
         <%= link_to_next_page @articles, 'もっと見る', id: 'more-article', class: 'btn btn-light w-100', params: { type: :article }, remote: true %>
       </div>
-      <div class= "ml-4 pagination">
-        
-      </div>
     </div>
   </div>
 </main>
