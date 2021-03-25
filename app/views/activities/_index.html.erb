@@ -1,9 +1,9 @@
 
 <% if @activities.exists? %>
-<section class="pt-5 container">
+<section class="pt-5 container activities-container">
     <div class="row py-lg-5">
       <div class="col-lg-8 col-md-10 mx-auto">
-      <h1>ユーザー履歴一覧</h1>
+      <h3 class="text-center" style="font-weight: bold;">履歴一覧</h3>
         <% @activities.each do |activity| %>
           <%= render 'activity', activity: activity %>
         <% end %>
@@ -12,7 +12,7 @@
     </div>
 </section>
 <% else %>
-  <section class="pt-5 text-center container">
+  <section class="pt-5 text-center container activities-container">
     <div class="row py-lg-5">
       <div class="col-lg-8 col-md-10 mx-auto">
         <p>履歴はありません</p>
