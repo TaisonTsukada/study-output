@@ -18,15 +18,15 @@
       when 'follow' then %>
         <%= "あなたをフォローしました"%>
       <% when 'like' then %>
-        <%= link_to 'あなたの投稿', notification.article, style: "font-weight: bold;" %>
+        <%= link_to 'あなたの投稿', notification.article, style: "font-weight: bold;", "data-turbolinks": false  %>
         <%= "にいいねしました"%>
       <% when 'comment' then %>
         <% if notification.article.user_id == visited.id %>
-          <%= link_to "あなたの投稿", notification.article, style: "font-weight: bold;" %>
+          <%= link_to "あなたの投稿", notification.article, style: "font-weight: bold;", "data-turbolinks": false  %>
           <%= "にコメントしました"%>
         <% else %>
           <span>
-            <%= link_to article_path(notification.article) do %>
+            <%= link_to article_path(notification.article), "data-turbolinks": false  do %>
              <% if notification.article.user.avatar.attached? %>
               <%= image_tag rails_blob_path(notification.article.user.avatar), class: 'icon_mini'%>
              <% else %>

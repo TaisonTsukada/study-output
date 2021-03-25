@@ -18,10 +18,9 @@ class ArticlesController < ApplicationController
       @articles = Article.includes(:user, :likes, :tags).order(created_at: :desc).page(params[:page]).per(9)
     end
     if @tag = params[:tag]
-      @articles = Article.tagged_with(params[:tag]).includes(:user,
-                                                             :likes).order(created_at: :desc).page(params[:page]).per(9)
+      @articles = Article.tagged_with(params[:tag]).includes( :user,
+                                                              :likes).order(created_at: :desc).page(params[:page]).per(9)
     end
-
     @notifications = current_user.passive_notifications.page(params[:page]).per(5) if user_signed_in?
   end
 
@@ -44,8 +43,11 @@ class ArticlesController < ApplicationController
     @comments = @article.comments
     impressionist(@article, nil, unique: [:ip_address])
     tag_list = @article.tag_list
-    @articles = Article.tagged_with(tag_list).where.not(id: @article.id).limit(3)
-    @articles = Article.order('RAND()').where.not(id: @article.id).limit(3) if @articles.blank?
+    @articles =Article.tagged_with([tag_list], :any => true).where.not(id: @article.id).limit(3)
+
+    if @articles.blank? || @articles.length <= 2
+      @articles = Article.order('RAND()').where.not(id: @article.id).limit(3)
+    end
   end
 
   def destroy
@@ -64,6 +66,16 @@ class ArticlesController < ApplicationController
     else
       flash.now[:alert] = '投稿内容を正しく入力してください'
       render :edit
+    end
+  end
+
+  def tag_list
+    @tags = Article.tag_counts_on(:tags).order('count DESC').page(params[:page]).per(18)
+    return unless request.xhr?
+
+    case params[:type]
+    when 'tags'
+      render "articles/#{params[:type]}"
     end
   end
 

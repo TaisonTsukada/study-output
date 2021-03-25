@@ -25,7 +25,8 @@ consumer.subscriptions.create("MessageChannel", {
     const newMessage = document.getElementById('message_message');
     messages.insertAdjacentHTML('beforeend', html);
     newMessage.value='';
-    messages.scrollTop = messages.scrollHeight;
+    const obj = document.getElementById("msg-history");
+    obj.scrollTop = obj.scrollHeight;
     }
     else{
       const html =
@@ -44,7 +45,7 @@ consumer.subscriptions.create("MessageChannel", {
     const newMessage = document.getElementById('message_message');
     messages.insertAdjacentHTML('beforeend', html);
     newMessage.value='';
-    const obj = document.getElementById("messages");
+    const obj = document.getElementById("msg-history");
     obj.scrollTop = obj.scrollHeight;
     };
   }
