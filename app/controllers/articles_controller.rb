@@ -74,7 +74,7 @@ class ArticlesController < ApplicationController
     return unless request.xhr?
 
     case params[:type]
-    when 'articles'
+    when 'tags'
       render "articles/#{params[:type]}"
     end
   end
