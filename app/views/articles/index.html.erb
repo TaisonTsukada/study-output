@@ -22,7 +22,9 @@
             <%= active_link_to  articles_path(option: "views"),active: { option: 'views' }, class: "nav-item nav-link " do %>
               <i class="fas fa-chart-line">閲覧数の多い記事</i>
             <% end %>
-            
+            <%= active_link_to tag_list_articles_path, class: "nav-item nav-link " do %>
+              <i class="fas fa-tags">全てのタグ</i>
+            <% end %>
           </div>
         </div>
       </nav>

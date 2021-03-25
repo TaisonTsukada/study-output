@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   root to: "articles#index"
   resources :articles do
     resources :comments, only: [:create, :destroy]
+    collection do
+      get 'tag_list'
+    end
   end
   
   post 'like/:id' => 'likes#create', as: 'create_like'
