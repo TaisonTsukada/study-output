@@ -3,3 +3,21 @@
   height: 30vh;
 }
 
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: 400;
+}
+/* rtl:begin:ignore */
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+.marketing{
+  background-color: #dce6df;
+  max-height: 100%;
+}
+
+

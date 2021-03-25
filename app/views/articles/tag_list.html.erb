@@ -1,0 +1,48 @@
+<div class="container mr-4 h-100 tag-list-container">
+  <div class="row h-100">
+    <main class="ml-20em col-9 ms-auto h-100">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light my-2">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ">
+            <%= active_link_to articles_path(option: "new"), active: { option: "new"}, class: "nav-item nav-link" do %>
+              <i class="fas fa-sort-numeric-down">新着記事</i>
+            <% end %>
+            <% if user_signed_in? %>
+            <%= active_link_to articles_path(option: "timeline"),active: { option: 'timeline' }, class: "nav-item nav-link " do %>
+              <i class="fas fa-users">タイムライン</i>
+            <% end %>
+            <% end %>
+            <%= active_link_to articles_path(option: "likes"),active: { option: 'likes' }, class: "nav-item nav-link " do %>
+              <i class="fas fa-heart">いいねの多い記事</i>
+            <% end %>
+            <%= active_link_to  articles_path(option: "views"),active: { option: 'views' }, class: "nav-item nav-link " do %>
+              <i class="fas fa-chart-line">閲覧数の多い記事</i>
+            <% end %>
+            <%= active_link_to tag_list_articles_path, class: "nav-item nav-link " do %>
+              <i class="fas fa-tags">全てのタグ</i>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+        <div class="container marketing bg-light">
+        <div class="pt-3">
+        <h1 class="text-center" style="font-weight: bold;"><i class="fas fa-tags mt-1"></i>全てのタグ一覧</h1>
+        </div>
+          <div class="row mt-4">
+            <% if @tags.present? %>
+              <% @tags.each do |tag| %>
+              <div class="col-lg-4">
+                <div class="nav-item ">
+                  <%= link_to "#{tag.name}(#{tag.taggings_count})",articles_path(tag: tag.name), class: "side-tag text-decoration-none "%>
+                </div>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+    </main>
+  </div>
+</div>
