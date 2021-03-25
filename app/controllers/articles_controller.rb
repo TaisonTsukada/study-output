@@ -67,6 +67,10 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def tag_list
+    @tag_list = Article.all_tags
+  end
+
   private
 
   def article_params
