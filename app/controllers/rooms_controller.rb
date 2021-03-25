@@ -22,12 +22,6 @@ class RoomsController < ApplicationController
       @entries = @room.entries
       entry = @room.entries.where.not(user_id: current_user)
       @user = entry[0].user
-      #dmnotifications = current_user.passive_dmnotifications
-      #@dmnotification = dmnotifications.where(room_id: @room_id, visited_id: current_user.id)
-      #if @dmnotification.any?
-        #@dmnotification.update_attributes(checked: true)
-      #end
-      
       @dmnotifications = current_user.passive_dmnotifications
       @dmnotifications.where(checked: false).each do |dmnotification|
         dmnotification.update_attributes(checked: true)

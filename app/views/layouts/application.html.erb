@@ -44,7 +44,7 @@
           <% end %>
         </li>
         <li class= "header-list">
-          <%= link_to  notifications_path do %>
+          <%= link_to  notifications_path, remote: true, "data-turbolinks": false do %>
             <% if unchecked_notifications.any? %>
               <span class="fa-stack header-icon">
                 <i class="fas fa-bell fa-stack-2x header-icon"></i>
@@ -102,5 +102,9 @@
     </div>
     <%= breadcrumbs separator: " &rsaquo; " %>  
     <%= yield %>
+    <div id="mask" class="hidden"></div>
+    <div id="modal" class="hidden">
+      <p>モーダルウィンドウ<p>
+    </div>
   </body>
 </html>

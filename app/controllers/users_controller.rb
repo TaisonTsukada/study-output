@@ -34,10 +34,16 @@ class UsersController < ApplicationController
 
   def followings
     @users = @user.followings.all
+    respond_to do |format|
+      format.js
+    end
   end
 
   def followers
     @users = @user.followers.all
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

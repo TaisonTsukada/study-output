@@ -1,0 +1,18 @@
+<section class="pt-5 container follow-modal">
+    <div class="row py-lg-3">
+      <div class="col-lg-5 col-md-7 mx-auto">
+      <h3 style="font-weight: bold;">フォロワー</h3>
+        <% @users.each do |user|%>
+        <hr>
+          <%= link_to user_path(user.id)  do %>
+            <% if user.avatar.attached? %>
+              <p><%= image_tag(rails_blob_path(user.avatar),:size => "30x30", class: "img-circle") %><%= user.nickname %></p>
+            <% else %>
+              <p><%= image_tag("default_user.png", :size => "40x40", class: "img-circle pl-1em") %><%= user.nickname %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+</section>
+<% breadcrumb :followers_user %>

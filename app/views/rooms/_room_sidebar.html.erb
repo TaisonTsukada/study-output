@@ -8,8 +8,7 @@
           <% @rooms.each do |room| %>
           <% entry = room.entries.where.not(user_id: current_user) %>
           <% user = entry[0].user%>
-            <%= link_to room_path(room) do %>
-            
+            <%= active_link_to room_path(room), class: "active-room" do %>
             <div class="chat_list">
               <div class="chat_people">
                 <div class="chat_img"> 
