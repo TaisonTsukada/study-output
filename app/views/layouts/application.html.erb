@@ -72,7 +72,7 @@
               </div>
             </div>
         </li>
-        <li class= "header-list"><%= link_to new_article_path do %>
+        <li class= "header-list"><%= link_to new_article_path, "data-turbolinks": false do %>
               <button type="button" class="create-btn"><i class="fas fa-pencil-alt"></i>投稿する</button>
             <% end %>
         </li>
@@ -83,7 +83,7 @@
           <% end %>
         </li>
         <li class= "header-list">
-        <%= link_to new_user_registration_path do%>
+        <%= link_to new_user_registration_path, "data-turbolinks": false do%>
           <button type="button" class="create-btn">新規登録</button>
         <% end %>
         </li>

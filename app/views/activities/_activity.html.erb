@@ -18,7 +18,7 @@
 
         <% when 'like' then %>
           <span>
-            <%= link_to article_path(activity.article) do %>
+            <%= link_to article_path(activity.article), "data-turbolinks": false  do %>
               <% if activity.article.user.avatar.attached? %>
                 <%= image_tag(rails_blob_path(activity.article.user.avatar), size: "50x50", class: "img-circle") %>
               <% else %>
@@ -32,11 +32,11 @@
           </span>
         <% when 'comment' then %>
           <% if activity.article.user_id == visitor.id %>
-            <%= link_to "あなたの投稿", activity.article, style: "font-weight: bold;" %>
+            <%= link_to "あなたの投稿", activity.article, style: "font-weight: bold;", "data-turbolinks": false  %>
             <%= "にコメントしました"%>
           <% else %>
             <span>
-              <%= link_to article_path(activity.article) do %>
+              <%= link_to article_path(activity.article), "data-turbolinks": false  do %>
               <% if activity.article.user.avatar.attached? %>
                 <%= image_tag(rails_blob_path(activity.article.user.avatar),size: "50x50", class: "img-circle")%>
               <% else %>
