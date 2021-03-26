@@ -2,7 +2,7 @@
   <% unless comment.id.nil? %>
     <%= link_to user_path(comment.user_id) do %>
       <% if comment.user.avatar.attached? %>
-        <p><%= image_tag(rails_blob_path(comment.avatar),:size => "30x30", class: "img-circle") %><%= comment.user.nickname %></p>
+        <p><%= image_tag(rails_blob_path(comment.user.avatar),:size => "30x30", class: "img-circle") %><%= comment.user.nickname %></p>
       <% else %>
         <p><%= image_tag("default_user.png", :size => "30x30", class: "img-circle pl-1em") %><%= comment.user.nickname %></p>
       <% end %>
