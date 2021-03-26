@@ -69,7 +69,7 @@
       </nav>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id = "article-list">
         <%= render partial: "articles/article",collection: @articles %>
-        <%= link_to_next_page @articles, 'もっと見る', id: 'more-article', class: 'btn btn-light w-100', params: { type: :article }, remote: true %>
+        <%= link_to_next_page @articles, 'もっと見る', id: 'more-article', class: 'btn btn-light w-100',style: "font-weight: bold;", params: { type: :article }, remote: true %>
       </div>
     </div>
   </div>
