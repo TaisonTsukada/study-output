@@ -23,18 +23,18 @@ RSpec.describe 'Articles', type: :system do
       image_path = Rails.root.join('app/assets/images/test-image.png')
       attach_file('article[image]', image_path)
       fill_in 'article_title', with: @article_title
-      # fill_in 'article_tag_list', with: "世界史"
+      fill_in 'article_tag_list', with: "世界史"
       fill_in_rich_text_area 'article_content', with: 'Hello <em>world!</em>'
-      # 送信するとTweetモデルのカウントが1上がることを確認する
-      # expect do
-      # click_button "公開する"
-      # end.to change(Article.count).by(1)
-      # トップページに遷移することを確認する
-      # expect(current_path).to eq(root_path)
-      # トップページには先ほど投稿した内容の画像が存在することを確認する（画像）
-      # expect(page).to have_selector('img')
-      # トップページには先ほど投稿した内容のタイトルが存在することを確認する（テキスト）
-      # expect(page).to have_content(@article_title)
+      #送信するとTweetモデルのカウントが1上がることを確認する
+      expect do
+      click_button "公開する"
+      end.to change(Article.count).by(1)
+      #トップページに遷移することを確認する
+      expect(current_path).to eq(root_path)
+      #トップページには先ほど投稿した内容の画像が存在することを確認する（画像）
+      expect(page).to have_selector('img')
+      #トップページには先ほど投稿した内容のタイトルが存在することを確認する（テキスト）
+      expect(page).to have_content(@article_title)
     end
   end
   context '記事投稿ができないとき' do
